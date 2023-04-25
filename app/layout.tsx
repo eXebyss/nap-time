@@ -1,18 +1,23 @@
-import './globals.css'
+import Footer from '@/components/UI/Footer/Footer';
+import './global.css';
+import { AuthContextProvider, FirestoreContextProvider } from '@/context';
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
-      <body>{children}</body>
-    </html>
-  )
+    return (
+        <html lang="en" data-theme="light">
+            <head />
+            <body>
+                <AuthContextProvider>
+                    <FirestoreContextProvider>
+                        {children}
+                    </FirestoreContextProvider>
+                </AuthContextProvider>
+                <Footer />
+            </body>
+        </html>
+    );
 }

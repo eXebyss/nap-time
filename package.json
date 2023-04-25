@@ -1,23 +1,64 @@
 {
-  "name": "baby-life-tracker",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@next/font": "13.1.6",
-    "@types/node": "18.14.0",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
-    "eslint": "8.34.0",
-    "eslint-config-next": "13.1.6",
-    "next": "13.1.6",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "4.9.5"
-  }
+    "name": "nap-time",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "cypress": "cypress open",
+        "lint": "next lint",
+        "lint:fix": "eslint --fix .",
+        "prettier:check": "prettier --check .",
+        "prettier:fix": "prettier --write ."
+    },
+    "dependencies": {
+        "@firebase/util": "^1.9.3",
+        "@headlessui/react": "^1.7.13",
+        "@types/node": "18.14.0",
+        "@types/react": "18.0.28",
+        "@types/react-dom": "18.0.11",
+        "cypress": "^12.9.0",
+        "daisyui": "^2.51.0",
+        "eslint": "8.34.0",
+        "eslint-config-next": "13.1.6",
+        "firebase": "^9.17.1",
+        "moment": "^2.29.4",
+        "next": "13.3.1-canary.4",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-icons": "^4.8.0",
+        "sass": "^1.62.0",
+        "typescript": "5.0.3",
+        "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "@types/uuid": "^9.0.1",
+        "@typescript-eslint/eslint-plugin": "^5.53.0",
+        "@typescript-eslint/parser": "^5.53.0",
+        "autoprefixer": "^10.4.13",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-airbnb-typescript": "^17.0.0",
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "postcss": "^8.4.21",
+        "prettier": "^2.8.4",
+        "tailwindcss": "^3.3.1"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
