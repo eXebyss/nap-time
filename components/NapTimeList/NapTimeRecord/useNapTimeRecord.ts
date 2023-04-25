@@ -7,8 +7,10 @@ import updateSubDocumentField from '@/firebase/firestore/updateSubDocFieldData';
 import { State, Action, DispatchAction, NapTimeData } from './types';
 
 const useNapTimeRecord = () => {
-    const user = useAuthContext();
+    const authContext = useAuthContext();
     const { babyData, babyNapTime, fetchBabyData } = useFirestoreContext();
+
+    const user = authContext?.user;
 
     const initialState: State = {
         isOpen: false,

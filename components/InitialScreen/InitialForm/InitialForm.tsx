@@ -7,9 +7,9 @@ import { useInitialScreenContext } from '../InitialScreenContext';
 
 const InitialForm = () => {
     const authContext = useAuthContext();
-    const user = authContext?.user;
-
     const context = useInitialScreenContext();
+
+    const user = authContext?.user;
 
     if (!context) {
         return null;

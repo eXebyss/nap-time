@@ -7,8 +7,10 @@ import { arrayUnion } from 'firebase/firestore';
 import { State, Action, DispatchAction } from './types';
 
 const useAddNapTime = () => {
-    const user = useAuthContext();
+    const authContext = useAuthContext();
     const { babyData, fetchBabyData } = useFirestoreContext();
+
+    const user = authContext?.user;
 
     const initialState: State = {
         isOpen: false,

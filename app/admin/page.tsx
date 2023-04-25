@@ -6,8 +6,10 @@ import { useRouter } from 'next/navigation';
 import addData from '@/firebase/firestore/addDocument';
 
 export default function Admin() {
-    const user = useAuthContext();
+    const authContext = useAuthContext();
     const router = useRouter();
+
+    const user = authContext?.user;
 
     useEffect(() => {
         if (user === null) router.push('/');
