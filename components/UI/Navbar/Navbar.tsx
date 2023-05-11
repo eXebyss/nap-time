@@ -5,7 +5,7 @@ import MenuButton from './MegaMenu';
 import useNavbar from './useNavbar';
 import NavbarShimmer from './NavbarShimmer';
 
-const Navbar = (): JSX.Element | null | undefined => {
+const Navbar = (): JSX.Element | null => {
     const { loading, user, babyName, userName } = useNavbar();
 
     const navBar = loading ? (
