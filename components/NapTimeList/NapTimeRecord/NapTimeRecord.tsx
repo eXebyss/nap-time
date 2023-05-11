@@ -40,7 +40,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                         payload: e.target.value,
                     })
                 }
-                classes="input input-ghost w-full max-w-xs my-2 lg:my-4 text-center focus:text-start lg:text-start lg:pl-0 lg:focus:pl-4"
+                classes="input input-ghost w-full max-w-xs my-2 fhd:my-4 text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4"
             />
             <label className="label">
                 <span className="label-text">Nap time finish:</span>
@@ -53,7 +53,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                         payload: e.target.value,
                     })
                 }
-                classes="input input-ghost w-full max-w-xs my-2 lg:my-4 text-center focus:text-start lg:text-start lg:pl-0 lg:focus:pl-4"
+                classes="input input-ghost w-full max-w-xs my-2 fhd:my-4 text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4"
             />
         </>
     );
@@ -71,7 +71,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                         payload: e.target.value,
                     })
                 }
-                classes="input input-ghost w-full max-w-xs my-2 lg:my-4 text-center focus:text-start lg:text-start lg:pl-0 lg:focus:pl-4"
+                classes="input input-ghost w-full max-w-xs my-2 fhd:my-4 text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4"
             />
             <label className="label">
                 <span className="label-text">Nap date finish:</span>
@@ -84,7 +84,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                         payload: e.target.value,
                     })
                 }
-                classes="input input-ghost w-full max-w-xs my-2 lg:my-4 text-center focus:text-start lg:text-start lg:pl-0 lg:focus:pl-4"
+                classes="input input-ghost w-full max-w-xs my-2 fhd:my-4 text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4"
             />
         </>
     );
@@ -139,18 +139,30 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
 
     return (
         <>
-            <div className="card lg:w-96 bg-base-100 shadow-xl m-2 lg:m-4">
-                <div className="card-body">
+            <div className="card fhd:w-96 bg-base-100 shadow-xl">
+                <div className="card-body p-4 ">
                     <div className="card-actions justify-end">
                         {(isOpen || isTimeFormOpen) && (
-                            <Button type="button" onClick={dateEdit}>
+                            <Button
+                                type="button"
+                                classes="btn-ghost my-0 min-h-0 h-fit"
+                                onClick={dateEdit}
+                            >
                                 <MdDateRange className="w-4 h-4" />
                             </Button>
                         )}
-                        <Button type="button" onClick={timeEdit}>
+                        <Button
+                            type="button"
+                            classes="btn-ghost my-0 min-h-0 h-fit"
+                            onClick={timeEdit}
+                        >
                             <MdEdit className="w-4 h-4" />
                         </Button>
-                        <Button type="button" onClick={() => deleteData(index)}>
+                        <Button
+                            type="button"
+                            classes="btn-ghost my-0 min-h-0 h-fit"
+                            onClick={() => deleteData(index)}
+                        >
                             <MdDelete className="w-4 h-4" />
                         </Button>
                     </div>

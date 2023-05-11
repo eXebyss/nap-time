@@ -4,4 +4,4 @@ export {
     InitialScreenContextProvider,
     useInitialScreenContext,
 } from './InitialScreenContext';
-export type { State, Action } from './types';
+export type { InitialScreenState, InitialScreenAction } from './types';

@@ -3,17 +3,33 @@
 import LogoutButton from '../LogoutButton';
 import MenuButton from './MegaMenu';
 import useNavbar from './useNavbar';
+import NavbarShimmer from './NavbarShimmer';
 
 const Navbar = (): JSX.Element | null => {
-    const { user, babyName, userName } = useNavbar();
+    const { loading, babyName, userName } = useNavbar();
 
-    const navBar = (
-        <div className="navbar justify-between bg-base-100 sticky top-0">
+    const navBar = loading ? (
+        <div className="navbar justify-between bg-base-100 sticky top-0 z-10">
             <div className="flex-none">
                 <MenuButton />
             </div>
             <div className="flex-none">
-                <p>{babyName} 🐣</p>
+                <NavbarShimmer /> 🐣
+            </div>
+            <div className="flex-none">
+                <NavbarShimmer />
+                <LogoutButton />
+            </div>
+        </div>
+    ) : (
+        <div className="navbar justify-between bg-base-100 sticky top-0 z-10">
+            <div className="flex-none">
+                <MenuButton />
+            </div>
+            <div className="flex-none">
+                <p>
+                    <span className="font-bold">{babyName}</span> 🐣
+                </p>
             </div>
             <div className="flex-none">
                 <p>{userName}</p>
@@ -22,7 +38,7 @@ const Navbar = (): JSX.Element | null => {
         </div>
     );
 
-    return user ? navBar : null;
+    return navBar;
 };
 
 export default Navbar;

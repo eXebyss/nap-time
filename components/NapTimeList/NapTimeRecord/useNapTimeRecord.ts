@@ -4,7 +4,12 @@ import { useFirestoreContext } from '@/context';
 import moment from 'moment';
 import { useEffect, useReducer } from 'react';
 import updateSubDocumentField from '@/firebase/firestore/updateSubDocFieldData';
-import { State, Action, DispatchAction, NapTimeData } from './types';
+import {
+    NapTimeRecordState,
+    NapTimeRecordAction,
+    NapTimeRecordDispatchAction,
+    NapTimeRecordData,
+} from './types';
 
 const useNapTimeRecord = () => {
     const authContext = useAuthContext();
@@ -12,7 +17,7 @@ const useNapTimeRecord = () => {
 
     const user = authContext?.user;
 
-    const initialState: State = {
+    const initialState: NapTimeRecordState = {
         isOpen: false,
         isTimeFormOpen: false,
         isDateFormOpen: false,
@@ -23,7 +28,7 @@ const useNapTimeRecord = () => {
         successMessage: '',
     };
 
-    const dispatchAction: DispatchAction = {
+    const dispatchAction: NapTimeRecordDispatchAction = {
         setOpen: 'setOpen',
         setTimeFormOpen: 'setTimeFormOpen',
         setDateFormOpen: 'setDateFormOpen',
@@ -45,7 +50,10 @@ const useNapTimeRecord = () => {
         setSuccessMessage,
     } = dispatchAction;
 
-    const reducer = (state: State, action: Action): State => {
+    const reducer = (
+        state: NapTimeRecordState,
+        action: NapTimeRecordAction,
+    ): NapTimeRecordState => {
         switch (action.type) {
             case setOpen:
                 return {
@@ -126,7 +134,7 @@ const useNapTimeRecord = () => {
     };
 
     const updateNapTime = async (
-        napTime: NapTimeData,
+        napTime: NapTimeRecordData,
         napTimeStart: string,
         napTimeFinish: string,
     ) => {
@@ -183,7 +191,7 @@ const useNapTimeRecord = () => {
     };
 
     const updateNapDate = async (
-        napTime: NapTimeData,
+        napTime: NapTimeRecordData,
         napDateStart: string,
         napTimeStart: string,
         napDateFinish: string,

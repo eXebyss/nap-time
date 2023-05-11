@@ -6,6 +6,7 @@ const useNavbar = () => {
     const { babyData } = useFirestoreContext();
 
     const user = authContext?.user;
+    const loading = authContext?.loading;
 
     const userName = user?.displayName ? user.displayName : user?.email;
 
@@ -13,7 +14,7 @@ const useNavbar = () => {
         ? babyData.result?.docs[0]?.data()?.name
         : null;
 
-    return { user, userName, babyName };
+    return { user, loading, userName, babyName };
 };
 
 export default useNavbar;

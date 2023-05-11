@@ -44,7 +44,7 @@ const MegaMenu = () => {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="w-full h-screen max-w-md transform overflow-hidden lg:rounded-r-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Panel className="w-full h-screen max-w-md transform overflow-hidden fhd:rounded-r-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                                     <Dialog.Title
                                         as="h3"
                                         className="text-lg font-medium leading-6 text-gray-900 flex justify-end"
@@ -60,18 +60,18 @@ const MegaMenu = () => {
 
                                     <Link
                                         href="/"
-                                        className="my-2 lg:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 lg:gap-x-4"
+                                        className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
                                     >
                                         Home 🏠
                                     </Link>
                                     <Link
                                         href="/naptime"
-                                        className="my-2 lg:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 lg:gap-x-4"
+                                        className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
                                     >
-                                        Nap time
+                                        Nap History
                                     </Link>
-                                    <div className="flex flex-wrap justify-start items-center gap-x-2 lg:gap-x-4">
-                                        <p className="my-2 lg:my-4 text-sm text-gray-500">
+                                    <div className="flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4">
+                                        <p className="my-2 fhd:my-4 text-sm text-gray-500">
                                             Logout
                                         </p>
                                         <LogoutButton />

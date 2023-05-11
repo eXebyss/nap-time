@@ -1,0 +1,147 @@
+* {
+    @apply box-border;
+}
+
+html {
+    @apply scroll-smooth;
+}
+
+html,
+body {
+    @apply p-0
+        m-0;
+}
+
+a {
+    @apply text-inherit
+        no-underline
+        link
+        link-primary;
+}
+
+html {
+    @apply scroll-smooth;
+}
+
+body {
+    @apply mx-auto
+        grid;
+}
+
+main {
+    @apply relative;
+}
+
+h1 {
+    @apply text-6xl
+        md:text-7xl
+        xl:text-8xl
+        2xl:text-9xl;
+}
+
+h2 {
+    @apply text-4xl
+        md:text-5xl
+        fhd:text-6xl;
+}
+
+h3 {
+    @apply text-3xl
+        md:text-4xl
+        fhd:text-5xl;
+}
+
+h4 {
+    @apply text-2xl
+        md:text-3xl
+        fhd:text-4xl;
+}
+
+h5 {
+    @apply text-xl
+        md:text-2xl
+        fhd:text-3xl;
+}
+
+h6 {
+    @apply text-base
+        md:text-xl
+        fhd:text-2xl;
+}
+
+p {
+    @apply text-sm
+        md:text-base;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply font-coda;
+}
+
+strong {
+    @apply text-primary;
+}
+
+b {
+    @apply text-primary;
+}
+
+svg {
+    @apply text-base-content;
+}
+
+button {
+    @apply my-2 
+        md:my-4;
+}
+
+/* width */
+::-webkit-scrollbar {
+    @apply w-2
+        2xl:w-2.5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-primary-content
+        rounded;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-primary
+        rounded;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-focus;
+}
+
+/* width */
+::-moz-scrollbar {
+    @apply w-2
+        2xl:w-2.5;
+}
+
+/* Track */
+::-moz-scrollbar-track {
+    @apply bg-primary-content
+        rounded;
+}
+
+/* Handle */
+::-moz-scrollbar-thumb {
+    @apply bg-primary
+        rounded;
+}
+
+/* Handle on hover */
+::-moz-scrollbar-thumb:hover {
+    @apply bg-primary-focus;
+}

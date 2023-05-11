@@ -1,4 +1,4 @@
-export type State = {
+export type InitialScreenState = {
     email: string;
     password: string;
     isSignInForm: boolean;
@@ -7,7 +7,7 @@ export type State = {
     authMessage: string | undefined;
 };
 
-export type Action =
+export type InitialScreenAction =
     | { type: 'setEmail'; payload: string }
     | { type: 'setPassword'; payload: string }
     | { type: 'setIsSignInForm'; payload: boolean }

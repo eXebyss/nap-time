@@ -1,9 +1,9 @@
-export interface NapTimeData {
+export interface NapTimeRecordData {
     start: string;
     finish: string;
 }
 
-export type State = {
+export type NapTimeRecordState = {
     isOpen: boolean;
     isTimeFormOpen: boolean;
     isDateFormOpen: boolean;
@@ -14,7 +14,7 @@ export type State = {
     successMessage: string | undefined;
 };
 
-export type Action =
+export type NapTimeRecordAction =
     | { type: 'setOpen'; payload: boolean }
     | { type: 'setTimeFormOpen'; payload: boolean }
     | { type: 'setDateFormOpen'; payload: boolean }
@@ -24,7 +24,7 @@ export type Action =
     | { type: 'setNapDateFinish'; payload: string | undefined }
     | { type: 'setSuccessMessage'; payload: string | undefined };
 
-export type DispatchAction = {
+export type NapTimeRecordDispatchAction = {
     setOpen: 'setOpen';
     setTimeFormOpen: 'setTimeFormOpen';
     setDateFormOpen: 'setDateFormOpen';
@@ -36,6 +36,6 @@ export type DispatchAction = {
 };
 
 export interface NapTimeRecordProps {
-    napTime: NapTimeData;
+    napTime: NapTimeRecordData;
     index: number;
 }

@@ -1,17 +1,19 @@
 .root {
-	@apply footer 
+    @apply footer 
         footer-center 
         p-4 
         bg-base-300 
-        text-base-content;
+        text-base-content
+        sticky
+        bottom-0;
 }
 
 .root p {
-	@apply text-xs
+    @apply text-xs
         sm:text-sm
         md:text-base;
 }
 
 .root a b {
-	@apply hover:text-accent;
+    @apply hover:text-accent;
 }
