@@ -1,0 +1,31 @@
+name: Lint and Prettier
+
+on: 
+  [push]
+
+jobs:
+  lint-and-prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 18 with pnpm
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '8.x'
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Run linter
+        run: pnpm lint
+
+      - name: Run prettier
+        run: pnpm prettier:check

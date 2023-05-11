@@ -9,9 +9,9 @@ function Footer() {
     const isBrowser = useBrowserCheck();
     const appVersion = useAppVersion();
 
-    const footerCopyRight = (isBrowser && window.location.pathname === '/' && (
+    const footerCopyRight = (isBrowser && (
         <b>
-            <a href="#aboutMe">[ me ]</a>
+            <a href="https://www.mihailsfjodorovs.com/">[ me ]</a>
         </b>
     )) || (
         <span

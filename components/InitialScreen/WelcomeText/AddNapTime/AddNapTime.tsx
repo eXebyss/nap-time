@@ -44,7 +44,7 @@ const AddNapTime = () => {
                         payload: e.target.value,
                     })
                 }
-                classes="input input-ghost w-full max-w-xs my-2 lg:my-4 text-center focus:text-start lg:text-start lg:pl-0 lg:focus:pl-4"
+                classes="input input-ghost w-full max-w-xs my-2 fhd:my-4 text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4"
             />
             <label className="label">
                 <span className="label-text">Nap time finish:</span>
@@ -58,7 +58,7 @@ const AddNapTime = () => {
                         payload: e.target.value,
                     })
                 }
-                classes="input input-ghost w-full max-w-xs my-2 lg:my-4 text-center focus:text-start lg:text-start lg:pl-0 lg:focus:pl-4"
+                classes="input input-ghost w-full max-w-xs my-2 fhd:my-4 text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4"
             />
             {napStart && napFinish && (
                 <Button
@@ -80,7 +80,7 @@ const AddNapTime = () => {
         <>
             {openCloseButton}
             <div
-                className={`max-h-0 overflow-hidden transition-all duration-500 ease-out ${
+                className={`grid justify-center max-h-0 overflow-hidden transition-all duration-500 ease-out ${
                     isOpen ? 'max-h-[500px] duration-[2000ms] ease-in' : ''
                 }`}
             >

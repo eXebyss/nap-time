@@ -2,10 +2,10 @@
 
 import { createContext, useContext, useMemo } from 'react';
 import useInitialScreen from './useInitialScreen';
-import { State } from './types';
+import { InitialScreenState } from './types';
 
 type InitialScreenContextType = {
-    state: State;
+    state: InitialScreenState;
     handleForm: (event: React.FormEvent<Element>) => Promise<void>;
     handleSwitchToSignIn: (
         event: React.MouseEvent<HTMLButtonElement>,

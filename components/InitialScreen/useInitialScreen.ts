@@ -4,10 +4,10 @@ import signIn from '@/firebase/auth/signin';
 import signUp from '@/firebase/auth/signup';
 import { useReducer } from 'react';
 import useValidation from '@/hooks/useValidation';
-import { State, Action } from './types';
+import { InitialScreenState, InitialScreenAction } from './types';
 
 const useInitialScreen = () => {
-    const initialState: State = {
+    const initialState: InitialScreenState = {
         email: '',
         password: '',
         isSignInForm: false,
@@ -16,7 +16,10 @@ const useInitialScreen = () => {
         authMessage: '',
     };
 
-    const reducer = (state: State, action: Action): State => {
+    const reducer = (
+        state: InitialScreenState,
+        action: InitialScreenAction,
+    ): InitialScreenState => {
         switch (action.type) {
             case 'setEmail':
                 return {

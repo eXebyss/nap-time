@@ -12,7 +12,7 @@ const Button = ({ children, classes, onClick, type }: ButtonProps) => {
         <button
             type={type}
             onClick={onClick}
-            className={`btn my-2 md:my-4 ${classes || ''}`}
+            className={`btn ${classes || ''}`}
         >
             {children}
         </button>
