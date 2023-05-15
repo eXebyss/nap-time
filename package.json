@@ -10,7 +10,8 @@
         "lint": "next lint",
         "lint:fix": "eslint --fix .",
         "prettier:check": "prettier --check .",
-        "prettier:fix": "prettier --write ."
+        "prettier:fix": "prettier --write .",
+        "prepare": "husky install"
     },
     "dependencies": {
         "@firebase/util": "^1.9.3",
@@ -24,6 +25,7 @@
         "eslint": "8.34.0",
         "eslint-config-next": "13.1.6",
         "firebase": "^9.17.1",
+        "husky": "^8.0.3",
         "moment": "^2.29.4",
         "next": "^13.4.1",
         "react": "18.2.0",
