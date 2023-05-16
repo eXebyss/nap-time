@@ -10,6 +10,10 @@ const useInitialScreen = () => {
     const initialState: InitialScreenState = {
         email: '',
         password: '',
+        confirmPassword: '',
+        showPassword: false,
+        showConfirmPassword: false,
+        passwordSecurityLevel: '',
         isSignInForm: false,
         isSignUpForm: false,
         passwordError: '',
@@ -30,6 +34,26 @@ const useInitialScreen = () => {
                 return {
                     ...state,
                     password: action.payload,
+                };
+            case 'setConfirmPassword':
+                return {
+                    ...state,
+                    confirmPassword: action.payload,
+                };
+            case 'setShowPassword':
+                return {
+                    ...state,
+                    showPassword: action.payload,
+                };
+            case 'setShowConfirmPassword':
+                return {
+                    ...state,
+                    showConfirmPassword: action.payload,
+                };
+            case 'setPasswordSecurityLevel':
+                return {
+                    ...state,
+                    passwordSecurityLevel: action.payload,
                 };
             case 'setIsSignInForm':
                 return {
@@ -58,12 +82,9 @@ const useInitialScreen = () => {
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { emailValidation, passwordValidation } = useValidation();
+    const { emailValidation, getPasswordSecurityLevel } = useValidation();
 
     const { isEmailValid } = emailValidation(state.email);
-    const { isPasswordValid, passwordErrorMessage } = passwordValidation(
-        state.password,
-    );
 
     const setEmail = (email: string) => {
         dispatch({
@@ -76,6 +97,34 @@ const useInitialScreen = () => {
         dispatch({
             type: 'setPassword',
             payload: password,
+        });
+
+        const passwordSecurityLevel = getPasswordSecurityLevel(password);
+
+        dispatch({
+            type: 'setPasswordSecurityLevel',
+            payload: passwordSecurityLevel,
+        });
+    };
+
+    const setConfirmPassword = (password: string) => {
+        dispatch({
+            type: 'setConfirmPassword',
+            payload: password,
+        });
+    };
+
+    const setShowPassword = () => {
+        dispatch({
+            type: 'setShowPassword',
+            payload: !state.showPassword,
+        });
+    };
+
+    const setShowConfirmPassword = () => {
+        dispatch({
+            type: 'setShowConfirmPassword',
+            payload: !state.showConfirmPassword,
         });
     };
 
@@ -110,7 +159,7 @@ const useInitialScreen = () => {
     const handleForm = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        if (isEmailValid && isPasswordValid) {
+        if (isEmailValid) {
             if (state.isSignInForm) {
                 const { result, error } = await signIn(
                     state.email,
@@ -122,7 +171,10 @@ const useInitialScreen = () => {
                 }
 
                 result && setAuthMessage('Success! ✅');
-            } else if (state.isSignUpForm) {
+            } else if (
+                state.isSignUpForm &&
+                state?.password === state?.confirmPassword
+            ) {
                 const { result, error } = await signUp(
                     state.email,
                     state.password,
@@ -136,8 +188,12 @@ const useInitialScreen = () => {
             }
         }
 
-        if (!isPasswordValid) {
-            setPasswordError(passwordErrorMessage);
+        // if (!isPasswordValid) {
+        //     setPasswordError(passwordErrorMessage);
+        // }
+
+        if (state?.password !== state?.confirmPassword) {
+            setPasswordError('Passwords should be the same.');
         }
     };
 
@@ -165,6 +221,9 @@ const useInitialScreen = () => {
         state,
         setEmail,
         setPassword,
+        setConfirmPassword,
+        setShowPassword,
+        setShowConfirmPassword,
         isEmailValid,
         handleForm,
         handleSwitchToSignIn,

@@ -16,6 +16,9 @@ type InitialScreenContextType = {
     isEmailValid: boolean;
     setEmail: (email: string) => void;
     setPassword: (password: string) => void;
+    setConfirmPassword: (password: string) => void;
+    setShowPassword: () => void;
+    setShowConfirmPassword: () => void;
 };
 
 const InitialScreenContext = createContext<InitialScreenContextType | null>(
@@ -33,6 +36,9 @@ export const InitialScreenContextProvider = ({
         state,
         setEmail,
         setPassword,
+        setConfirmPassword,
+        setShowPassword,
+        setShowConfirmPassword,
         isEmailValid,
         handleForm,
         handleSwitchToSignIn,
@@ -48,6 +54,9 @@ export const InitialScreenContextProvider = ({
             isEmailValid,
             setEmail,
             setPassword,
+            setConfirmPassword,
+            setShowPassword,
+            setShowConfirmPassword,
         }),
         [
             state,
@@ -57,6 +66,9 @@ export const InitialScreenContextProvider = ({
             isEmailValid,
             setEmail,
             setPassword,
+            setConfirmPassword,
+            setShowPassword,
+            setShowConfirmPassword,
         ],
     );
 
