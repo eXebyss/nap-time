@@ -25,7 +25,7 @@ function useValidation() {
         return { isEmailValid, emailValidationMessage };
     };
 
-    const passwordValidation = (props: String) => {
+    const passwordValidation = (password: String) => {
         let passwordErrorMessage = '';
         let isPasswordValid = false;
 
@@ -33,28 +33,28 @@ function useValidation() {
         const numberRegEx = /\d/;
         const lowerAndUpperCaseRegEx = /^(?=.*[a-z])(?=.*[A-Z])/;
 
-        if (!props || props?.length === 0) {
+        if (!password || password?.length === 0) {
             isPasswordValid = false;
             passwordErrorMessage = 'Password can not be empty!';
         }
 
-        if (props?.length < 6) {
+        if (password?.length < 6) {
             isPasswordValid = false;
             passwordErrorMessage = 'Password must contain at least 6 symbols!';
         }
 
-        if (!specialCharRegEx.test(String(props))) {
+        if (!specialCharRegEx.test(String(password))) {
             isPasswordValid = false;
             passwordErrorMessage =
                 'Password must contain at least 1 special character!';
         }
 
-        if (!numberRegEx.test(String(props))) {
+        if (!numberRegEx.test(String(password))) {
             isPasswordValid = false;
             passwordErrorMessage = 'Password must contain at least 1 number!';
         }
 
-        if (!lowerAndUpperCaseRegEx.test(String(props))) {
+        if (!lowerAndUpperCaseRegEx.test(String(password))) {
             isPasswordValid = false;
             passwordErrorMessage =
                 'Password must contain at least 1 lower case and 1 upper case character!';
@@ -65,7 +65,28 @@ function useValidation() {
         return { isPasswordValid, passwordErrorMessage };
     };
 
-    return { emailValidation, passwordValidation };
+    const getPasswordSecurityLevel = (password: string) => {
+        const passwordStrength = [
+            'Very Weak',
+            'Weak',
+            'Moderate',
+            'Strong',
+            'Very Strong',
+            'Extra Strong',
+        ];
+
+        let score = 0;
+        if (password.length > 6) score += 1;
+        if (password.length > 10) score += 1;
+        if (/[A-Z]+/.test(password)) score += 1;
+        if (/[a-z]+/.test(password)) score += 1;
+        if (/\d+/.test(password)) score += 1;
+        if (/[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(password)) score += 1;
+
+        return passwordStrength[score - 1] || 'Unknown';
+    };
+
+    return { emailValidation, passwordValidation, getPasswordSecurityLevel };
 }
 
 export default useValidation;
