@@ -1,7 +1,9 @@
 'use client';
 
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
 import { useAuthContext } from '@/context/AuthContext';
+import signInWithGoogle from '@/firebase/auth/signInWithGoogle';
 import Button from '../../UI/Button';
 import { useInitialScreenContext } from '../InitialScreenContext';
 
@@ -211,6 +213,17 @@ const InitialForm = () => {
                                 </div>
                             </div>
                         )}
+                        <div className="divider">OR</div>
+                        <div className="grid h-20 flex-grow rounded-box place-items-center">
+                            <Button
+                                type="button"
+                                onClick={signInWithGoogle}
+                                classes="btn-outline w-full"
+                            >
+                                <FcGoogle className="mr-2" />
+                                Google
+                            </Button>
+                        </div>
                     </div>
                 </form>
             </div>
