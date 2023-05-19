@@ -36,7 +36,7 @@ const WelcomeText = (): JSX.Element => {
             ) : (
                 <>
                     <h1 className="text-5xl font-bold">Welcome</h1>
-                    <h2 className="text-4xl font-bold">to NapTime!</h2>
+                    <h2 className="text-4xl font-bold">to Baby Time!</h2>
                 </>
             )}
         </>

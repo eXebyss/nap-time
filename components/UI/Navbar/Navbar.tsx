@@ -14,7 +14,7 @@ const Navbar = (): JSX.Element | null => {
                 <MenuButton />
             </div>
             <div className="flex-none">
-                <NavbarShimmer /> 🐣
+                <NavbarShimmer />
             </div>
             <div className="flex-none">
                 <NavbarShimmer />
@@ -29,7 +29,7 @@ const Navbar = (): JSX.Element | null => {
                 </div>
                 <div className="flex-none">
                     <p>
-                        <span className="font-bold">{babyName}</span> 🐣
+                        <span className="font-bold">{babyName}</span>
                     </p>
                 </div>
                 <div className="flex-none">
