@@ -5,6 +5,7 @@ import '../styles/global/global.scss';
 import { AuthContextProvider, FirestoreContextProvider } from '@/context';
 import { ogUrl, siteDescription, siteTitle } from '@/constants';
 import { Metadata } from 'next';
+import Navbar from '@/components/UI/Navbar/Navbar';
 
 const coda = Coda({
     weight: '400',
@@ -188,6 +189,7 @@ export default function RootLayout({
             <body>
                 <AuthContextProvider>
                     <FirestoreContextProvider>
+                        <Navbar />
                         {children}
                     </FirestoreContextProvider>
                 </AuthContextProvider>

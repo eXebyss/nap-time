@@ -70,6 +70,12 @@ const MegaMenu = () => {
                                     >
                                         Nap History
                                     </Link>
+                                    <Link
+                                        href="/installation-guide"
+                                        className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
+                                    >
+                                        Installation Guide
+                                    </Link>
                                     <div className="flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4">
                                         <p className="my-2 fhd:my-4 text-sm text-gray-500">
                                             Logout
