@@ -3,4 +3,12 @@ export {
     useFirestoreContext,
     FirestoreContextProvider,
 } from './FirestoreContext';
-export type { FirestoreContextType, BabyData, NapTimeData } from './types';
+export { SanityProvider, useSanityContext } from './SanityContext';
+export type {
+    FirestoreContextType,
+    BabyData,
+    NapTimeData,
+    InstallationGuideData,
+    SanityContextProviderProps,
+    SanityContextValue,
+} from './types';

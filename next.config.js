@@ -35,13 +35,21 @@ const nextConfig = {
     experimental: {
         appDir: true,
     },
+    images: {
+        domains: ['cdn.sanity.io'],
+    },
     webpack: (config) => {
-        const entry = generateAppDirEntry(config.entry);
-        // eslint-disable-next-line no-param-reassign
-        config.entry = () => entry;
+        // Apply webpack changes only if environment is not in development mode
+        if (process.env.NODE_ENV !== 'development') {
+            const entry = generateAppDirEntry(config.entry);
+            // eslint-disable-next-line no-param-reassign
+            config.entry = () => entry;
+        }
 
         return config;
     },
 };
 
-module.exports = withPWA(nextConfig);
+// Only enable next-pwa if NODE_ENV is not in development mode
+module.exports =
+    process.env.NODE_ENV !== 'development' ? withPWA(nextConfig) : nextConfig;
