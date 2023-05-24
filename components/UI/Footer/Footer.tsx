@@ -9,9 +9,9 @@ function Footer() {
     const isBrowser = useBrowserCheck();
     const appVersion = useAppVersion();
 
-    const path = window.location.pathname;
+    const path = isBrowser ? window.location.pathname : null;
 
-    if (path.startsWith('/studio') && path.length > '/studio'.length + 1) {
+    if (path?.startsWith('/studio') && path.length > '/studio'.length + 1) {
         return null;
     }
 

@@ -1,5 +1,6 @@
 'use client';
 
+import { useBrowserCheck } from '@/hooks';
 import LogoutButton from '../LogoutButton';
 import MenuButton from './MegaMenu';
 import useNavbar from './useNavbar';
@@ -7,10 +8,11 @@ import NavbarShimmer from './NavbarShimmer';
 
 const Navbar = (): JSX.Element | null => {
     const { loading, user, babyName, userName } = useNavbar();
+    const isBrowser = useBrowserCheck();
 
-    const path = window.location.pathname;
+    const path = isBrowser ? window.location.pathname : null;
 
-    if (path.startsWith('/studio') && path.length > '/studio'.length + 1) {
+    if (path?.startsWith('/studio') && path.length > '/studio'.length + 1) {
         return null;
     }
 
