@@ -8,6 +8,12 @@ import NavbarShimmer from './NavbarShimmer';
 const Navbar = (): JSX.Element | null => {
     const { loading, user, babyName, userName } = useNavbar();
 
+    const path = window.location.pathname;
+
+    if (path.startsWith('/studio') && path.length > '/studio'.length + 1) {
+        return null;
+    }
+
     const navBar = loading ? (
         <div className="navbar justify-between bg-base-100 sticky top-0 z-10">
             <div className="flex-none">

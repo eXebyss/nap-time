@@ -9,6 +9,12 @@ function Footer() {
     const isBrowser = useBrowserCheck();
     const appVersion = useAppVersion();
 
+    const path = window.location.pathname;
+
+    if (path.startsWith('/studio') && path.length > '/studio'.length + 1) {
+        return null;
+    }
+
     const footerCopyRight = (isBrowser && (
         <b>
             <a href="https://www.mihailsfjodorovs.com/">[ me ]</a>
