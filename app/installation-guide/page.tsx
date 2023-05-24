@@ -1,13 +1,14 @@
 import InstallationGuide from '@/components/InstallationGuide/InstallationGuide';
-import { SanityProvider } from '@/context';
-import { NextPage } from 'next';
+import { getSanityData } from '@/utils';
 
-const InstallationGuidePage: NextPage = () => {
+const InstallationGuidePage = async () => {
+    const installationGuideData = await getSanityData(
+        `*[_type == "installationGuide"]`,
+    );
+
     return (
         <main>
-            <SanityProvider>
-                <InstallationGuide />
-            </SanityProvider>
+            <InstallationGuide installationGuideData={installationGuideData} />
         </main>
     );
 };
