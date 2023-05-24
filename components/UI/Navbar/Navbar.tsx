@@ -1,5 +1,6 @@
 'use client';
 
+import { useBrowserCheck } from '@/hooks';
 import LogoutButton from '../LogoutButton';
 import MenuButton from './MegaMenu';
 import useNavbar from './useNavbar';
@@ -7,6 +8,13 @@ import NavbarShimmer from './NavbarShimmer';
 
 const Navbar = (): JSX.Element | null => {
     const { loading, user, babyName, userName } = useNavbar();
+    const isBrowser = useBrowserCheck();
+
+    const path = isBrowser ? window.location.pathname : null;
+
+    if (path?.startsWith('/studio') && path.length > '/studio'.length + 1) {
+        return null;
+    }
 
     const navBar = loading ? (
         <div className="navbar justify-between bg-base-100 sticky top-0 z-10">
