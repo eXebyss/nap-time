@@ -1,3 +1,5 @@
+// !!Use only if no server side rendering is necessary.
+
 'use client';
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
