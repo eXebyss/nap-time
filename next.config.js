@@ -36,7 +36,7 @@ const nextConfig = {
         appDir: true,
     },
     images: {
-        domains: ['cdn.sanity.io'],
+        domains: ['cdn.sanity.io', 'lh3.googleusercontent.com'],
     },
     webpack: (config) => {
         // Apply webpack changes only if environment is not in development mode

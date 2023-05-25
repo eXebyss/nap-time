@@ -13,7 +13,7 @@ const InputForm = ({ placeholder, buttonHandler }: InputFormProps) => {
     const [value, setValue] = useState<string>('');
 
     return (
-        <div className="flex">
+        <div className="flex justify-center">
             <Input
                 type="text"
                 placeholder={placeholder}
