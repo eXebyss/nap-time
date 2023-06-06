@@ -11,7 +11,6 @@ const MegaMenu = () => {
 
     return (
         <>
-            {' '}
             <Button type="button" classes="btn-ghost" onClick={openMenuModal}>
                 <RiMenuFill />
             </Button>
@@ -32,7 +31,6 @@ const MegaMenu = () => {
                     >
                         <div className="fixed inset-0 bg-black bg-opacity-25" />
                     </Transition.Child>
-
                     <div className="fixed inset-0 overflow-y-auto">
                         <div className="flex min-h-full items-center justify-start text-center">
                             <Transition.Child
@@ -57,7 +55,6 @@ const MegaMenu = () => {
                                             <RiCloseFill />
                                         </Button>
                                     </Dialog.Title>
-
                                     <Link
                                         href="/"
                                         className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"

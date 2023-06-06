@@ -1,3 +1,5 @@
+import { useWindowSize } from '@/hooks';
+
 type ToastProps = {
     type: 'success' | string;
     message?: string;
@@ -5,8 +7,16 @@ type ToastProps = {
 };
 
 const Toast = ({ type, message, errorMessage }: ToastProps) => {
+    const { width: windowWidth } = useWindowSize();
+
+    const isMobile = windowWidth && windowWidth < 768;
+
     const SuccessToast = (
-        <div className="toast">
+        <div
+            className={`toast toast-end ${
+                isMobile ? 'bottom-28' : 'bottom-14'
+            }`}
+        >
             <div className="alert alert-success shadow-lg">
                 <div>
                     <svg
@@ -29,7 +39,7 @@ const Toast = ({ type, message, errorMessage }: ToastProps) => {
     );
 
     const ErrorToast = (
-        <div className="toast">
+        <div className="toast toast-end bottom-14">
             <div className="alert alert-error shadow-lg">
                 <div>
                     <svg

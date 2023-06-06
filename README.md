@@ -12,6 +12,8 @@ The idea of the app, to give the ability to record and track the sleeping time o
 <li>Authentication: Firebase;</li>
 <li>Database: Firebase Firestore;</li>
 <li>Deploy: Vercel;</li>
+<li>CMS: Sanity;</li>
+<li>PWA: Enabled;</li>
 </ul>
 
 [Link](https://nap-time-tracker.vercel.app/)

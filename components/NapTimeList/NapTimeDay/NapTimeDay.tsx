@@ -3,7 +3,7 @@ import { Disclosure } from '@headlessui/react';
 import { ChevronUpIcon } from '@heroicons/react/20/solid';
 import Divider from '@/components/UI/Divider/Divider';
 import { NapTimeListData } from '../types';
-import NapTimeRecord from '../NapTimeRecord/NapTimeRecord';
+import NapTimeRecord from '../../UI/NapTimeRecord/NapTimeRecord';
 import useNapTimeDay from './useNapTimeDay';
 
 const NapTimeDay = ({ day }: { day: string }) => {

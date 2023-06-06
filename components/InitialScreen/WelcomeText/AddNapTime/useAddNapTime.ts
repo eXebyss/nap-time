@@ -4,7 +4,11 @@ import { useFirestoreContext } from '@/context/FirestoreContext';
 import { useAuthContext } from '@/context/AuthContext';
 import updateSubData from '@/firebase/firestore/updateSubDocument';
 import { arrayUnion } from 'firebase/firestore';
-import { State, Action, DispatchAction } from './types';
+import {
+    AddNapTimeState,
+    AddNapTimeAction,
+    AddNapTimeDispatchAction,
+} from './types';
 
 const useAddNapTime = () => {
     const authContext = useAuthContext();
@@ -12,19 +16,25 @@ const useAddNapTime = () => {
 
     const user = authContext?.user;
 
-    const initialState: State = {
+    const initialState: AddNapTimeState = {
         isOpen: false,
         isFormOpen: false,
         napStart: '',
         napFinish: '',
+        napDateStart: '',
+        napDateFinish: '',
+        napType: '',
         successMessage: '',
     };
 
-    const dispatchAction: DispatchAction = {
+    const dispatchAction: AddNapTimeDispatchAction = {
         setOpen: 'setOpen',
         setFormOpen: 'setFormOpen',
         setNapStart: 'setNapStart',
         setNapFinish: 'setNapFinish',
+        setNapDateStart: 'setNapDateStart',
+        setNapDateFinish: 'setNapDateFinish',
+        setNapType: 'setNapType',
         setSuccessMessage: 'setSuccessMessage',
     };
 
@@ -33,10 +43,16 @@ const useAddNapTime = () => {
         setFormOpen,
         setNapStart,
         setNapFinish,
+        setNapDateStart,
+        setNapDateFinish,
+        setNapType,
         setSuccessMessage,
     } = dispatchAction;
 
-    const reducer = (state: State, action: Action): State => {
+    const reducer = (
+        state: AddNapTimeState,
+        action: AddNapTimeAction,
+    ): AddNapTimeState => {
         switch (action.type) {
             case setOpen:
                 return {
@@ -58,6 +74,21 @@ const useAddNapTime = () => {
                     ...state,
                     napFinish: action.payload,
                 };
+            case setNapDateStart:
+                return {
+                    ...state,
+                    napDateStart: action.payload,
+                };
+            case setNapDateFinish:
+                return {
+                    ...state,
+                    napDateFinish: action.payload,
+                };
+            case setNapType:
+                return {
+                    ...state,
+                    napType: action.payload,
+                };
             case setSuccessMessage:
                 return {
                     ...state,
@@ -70,7 +101,7 @@ const useAddNapTime = () => {
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { isOpen, isFormOpen, napStart, napFinish, successMessage } = state;
+    const { isOpen, isFormOpen, napType, successMessage } = state;
 
     const onAdd = () => {
         dispatch({
@@ -85,12 +116,19 @@ const useAddNapTime = () => {
         }, 500);
     };
 
-    const addNapTime = async (napStart: string, napFinish: string) => {
+    const selectNapType = (type: string) => {
+        dispatch({
+            type: setNapType,
+            payload: type,
+        });
+    };
+
+    const addNapTimeShort = async () => {
         const napStartDate = moment(
-            `${moment().format('YYYY-MM-DD')} ${napStart}`,
+            `${moment().format('YYYY-MM-DD')} ${state.napStart}`,
         );
         const napFinishDate = moment(
-            `${moment().format('YYYY-MM-DD')} ${napFinish}`,
+            `${moment().format('YYYY-MM-DD')} ${state.napFinish}`,
         );
 
         let result = null;
@@ -106,6 +144,7 @@ const useAddNapTime = () => {
                     napTime: arrayUnion({
                         start: napStartDate.format('YYYY-MM-DD HH:mm'),
                         finish: napFinishDate.format('YYYY-MM-DD HH:mm'),
+                        type: napType,
                     }),
                 },
             ));
@@ -124,6 +163,10 @@ const useAddNapTime = () => {
                 payload: '',
             });
             dispatch({
+                type: setNapType,
+                payload: '',
+            });
+            dispatch({
                 type: setSuccessMessage,
                 payload: 'Saved.',
             });
@@ -138,6 +181,67 @@ const useAddNapTime = () => {
         fetchBabyData();
     };
 
+    const addNapTimeLong = async () => {
+        const napStartDate = moment(`${state.napDateStart} ${state.napStart}`);
+        const napFinishDate = moment(
+            `${state.napDateFinish} ${state.napFinish}`,
+        );
+
+        let result = null;
+
+        babyData?.result?.docs[0]?.id &&
+            user?.uid &&
+            (result = await updateSubData(
+                'user',
+                user.uid,
+                'baby',
+                babyData?.result?.docs[0]?.id,
+                {
+                    napTime: arrayUnion({
+                        start: napStartDate.format('YYYY-MM-DD HH:mm'),
+                        finish: napFinishDate.format('YYYY-MM-DD HH:mm'),
+                        type: napType,
+                    }),
+                },
+            ));
+
+        if (!result) {
+            dispatch({
+                type: setOpen,
+                payload: !isOpen,
+            });
+            dispatch({
+                type: setNapStart,
+                payload: '',
+            });
+            dispatch({
+                type: setNapFinish,
+                payload: '',
+            });
+            dispatch({
+                type: setNapType,
+                payload: '',
+            });
+            dispatch({
+                type: setSuccessMessage,
+                payload: 'Saved.',
+            });
+            setTimeout(() => {
+                dispatch({
+                    type: setFormOpen,
+                    payload: !isFormOpen,
+                });
+            }, 2500);
+        }
+
+        fetchBabyData();
+    };
+
+    const addNapTime = async () => {
+        napType === '🌞' && (await addNapTimeShort());
+        napType === '🌚' && (await addNapTimeLong());
+    };
+
     useEffect(() => {
         successMessage &&
             setTimeout(() => {
@@ -145,20 +249,19 @@ const useAddNapTime = () => {
                     type: setSuccessMessage,
                     payload: '',
                 });
-            }, 2500);
+            }, 3500);
     }, [successMessage, setSuccessMessage]);
 
     return {
-        isOpen,
-        isFormOpen,
+        state,
         onAdd,
         dispatch,
         setNapStart,
         setNapFinish,
-        napStart,
-        napFinish,
+        setNapDateStart,
+        setNapDateFinish,
+        selectNapType,
         addNapTime,
-        successMessage,
     };
 };
 
