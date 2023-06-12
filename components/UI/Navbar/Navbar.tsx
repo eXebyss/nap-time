@@ -6,6 +6,7 @@ import LogoutButton from '../LogoutButton';
 import MenuButton from './MegaMenu';
 import useNavbar from './useNavbar';
 import NavbarShimmer from './NavbarShimmer';
+import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 
 const Navbar = (): JSX.Element | null => {
     const { loading, user, babyName, userName, userPhoto } = useNavbar();
@@ -21,6 +22,7 @@ const Navbar = (): JSX.Element | null => {
         <div className="navbar justify-between bg-base-100 sticky top-0 z-10">
             <div className="flex-none">
                 <MenuButton />
+                <ThemeSwitch />
             </div>
             <div className="flex-none">
                 <NavbarShimmer />
@@ -33,8 +35,9 @@ const Navbar = (): JSX.Element | null => {
     ) : (
         user && (
             <div className="navbar justify-between bg-base-100 sticky top-0 z-10">
-                <div className="flex-none">
+                <div className="flex">
                     <MenuButton />
+                    <ThemeSwitch />
                 </div>
                 <div className="flex-none">
                     <p>
