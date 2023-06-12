@@ -1,9 +1,6 @@
 import { NapTimeData } from '@/context';
 
-export interface NapTimeListData {
-    start: string;
-    finish: string;
-}
+export type NapTimeListData = NapTimeData;
 
 export type NapTimeState = {
     selectedYear: string | null;

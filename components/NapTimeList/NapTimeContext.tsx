@@ -204,7 +204,7 @@ export const NapTimeContextProvider = ({
     );
 
     const uniqueDays = useMemo(() => {
-        return [...new Set(existingDays)];
+        return [...new Set(existingDays)].sort((a, b) => Number(a) - Number(b));
     }, [existingDays]);
 
     const getDayRecords = useCallback(
@@ -212,9 +212,23 @@ export const NapTimeContextProvider = ({
             const filteredDayRecords = state?.filteredNapTimeMonth?.length
                 ? state.filteredNapTimeMonth.filter(
                       (napTime: NapTimeListData) => {
-                          return (
-                              napTime.start.split('-')[2].split(' ')[0] === day
-                          );
+                          if (napTime.type === '🌞') {
+                              return (
+                                  napTime.start.split('-')[2].split(' ')[0] ===
+                                  day
+                              );
+                          }
+
+                          if (napTime.type === '🌚') {
+                              return (
+                                  napTime.start.split('-')[2].split(' ')[0] ===
+                                      day ||
+                                  napTime.finish.split('-')[2].split(' ')[0] ===
+                                      day
+                              );
+                          }
+
+                          return false;
                       },
                   )
                 : null;

@@ -157,7 +157,7 @@ const AddNapTime = () => {
                         payload: e.target.value,
                     })
                 }
-                classes="input input-ghost w-full max-w-xs text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4"
+                classes="input input-ghost w-full max-w-xs text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4 my-2 fhd:my-4"
             />
             <label className="label">
                 <span className="label-text">Nap time finish:</span>
@@ -171,7 +171,7 @@ const AddNapTime = () => {
                         payload: e.target.value,
                     })
                 }
-                classes="input input-ghost w-full max-w-xs text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4"
+                classes="input input-ghost w-full max-w-xs text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4 my-2 fhd:my-4"
             />
             {napType === '🌚' && dateForm}
             {napStart &&

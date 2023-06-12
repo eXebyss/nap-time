@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Divider from '@/components/UI/Divider/Divider';
 import useNapTime from './useNapTime';
 import { NapTimeData } from './types';
-import NapTimeCard from './NapTimeCard/NapTimeCard';
+import NapTimeCard from '../../../UI/NapTimeCard/NapTimeCard';
 
 const NapTime = () => {
     const { babyName, filteredNapTime, totalNapTime } = useNapTime();
@@ -20,11 +20,20 @@ const NapTime = () => {
             {' '}
             {todayNapTime ? (
                 <>
-                    <p>{babyName}'s, current nap time: </p>
+                    <p>
+                        <span className="font-bold">{babyName}</span>'s, current
+                        nap time:{' '}
+                    </p>
                     <Divider />
                     {todayNapTime}
                     <Divider />
-                    <p>Total nap time: {totalNapTime.toFixed(2)} hours</p>
+                    <p>
+                        Total nap time:{' '}
+                        <span className="font-bold">
+                            {totalNapTime.toFixed(2)}
+                        </span>{' '}
+                        hours
+                    </p>
                 </>
             ) : (
                 <p>

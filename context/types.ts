@@ -14,6 +14,7 @@ export type BabyData = {
 export interface NapTimeData {
     start: string;
     finish: string;
+    type: string;
 }
 
 export type InstallationGuideData = {

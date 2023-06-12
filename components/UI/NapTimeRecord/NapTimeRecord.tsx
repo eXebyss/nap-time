@@ -1,5 +1,5 @@
 import Button from '@/components/UI/Button/Button';
-import { MdDateRange, MdEdit, MdDelete, MdSave } from 'react-icons/md';
+import { MdDateRange, MdEdit, MdDelete } from 'react-icons/md';
 import Input from '../Input/Input';
 import Toast from '../Toast/Toast';
 import useNapTimeRecord from './useNapTimeRecord';
@@ -107,9 +107,9 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                                   napTimeFinish,
                               )
                           }
-                          classes="btn-ghost"
+                          classes="btn-ghost text-2xl fhd:text-3xl"
                       >
-                          <MdSave className="w-12 h-12" />
+                          Save
                       </Button>
                   )
                 : napTimeStart &&
@@ -127,9 +127,9 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                                   napTimeFinish,
                               )
                           }
-                          classes="btn-ghost"
+                          classes="btn-ghost text-2xl fhd:text-3xl"
                       >
-                          <MdSave className="w-12 h-12" />
+                          Save
                       </Button>
                   )}
         </div>

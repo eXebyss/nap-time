@@ -1,17 +1,17 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Disclosure } from '@headlessui/react';
 import { ChevronUpIcon } from '@heroicons/react/20/solid';
+import NapTimeCard from '@/components/UI/NapTimeCard/NapTimeCard';
 import Divider from '@/components/UI/Divider/Divider';
 import { NapTimeListData } from '../types';
-import NapTimeRecord from '../../UI/NapTimeRecord/NapTimeRecord';
 import useNapTimeDay from './useNapTimeDay';
 
 const NapTimeDay = ({ day }: { day: string }) => {
-    const { dayRecords, totalNapTime } = useNapTimeDay(day);
+    const { filteredNapTime, totalNapTime } = useNapTimeDay(day);
 
     return (
         <div className="w-full">
-            <div className="mx-auto w-full max-w-md rounded-2xl">
+            <div className="mx-auto w-full rounded-2xl">
                 <Disclosure>
                     {({ open }) => (
                         <>
@@ -31,20 +31,22 @@ const NapTimeDay = ({ day }: { day: string }) => {
                                     </span>{' '}
                                     hours.
                                 </p>
-                                {dayRecords?.length
-                                    ? dayRecords?.map(
-                                          (
-                                              napTime: NapTimeListData,
-                                              index: number,
-                                          ) => (
-                                              <NapTimeRecord
-                                                  key={uuidv4()}
-                                                  napTime={napTime}
-                                                  index={index}
-                                              />
-                                          ),
-                                      )
-                                    : null}
+                                {filteredNapTime?.length ? (
+                                    <div className="grid">
+                                        {filteredNapTime?.map(
+                                            (
+                                                napTime: NapTimeListData,
+                                                index: number,
+                                            ) => (
+                                                <NapTimeCard
+                                                    key={uuidv4()}
+                                                    napTime={napTime}
+                                                    idx={index}
+                                                />
+                                            ),
+                                        )}
+                                    </div>
+                                ) : null}
                             </Disclosure.Panel>
                         </>
                     )}
