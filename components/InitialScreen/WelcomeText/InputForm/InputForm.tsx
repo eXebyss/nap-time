@@ -24,7 +24,7 @@ const InputForm = ({ placeholder, buttonHandler }: InputFormProps) => {
                 <Button
                     type="button"
                     onClick={() => buttonHandler(value)}
-                    classes="btn-ghost ml-2"
+                    classes="btn-ghost ml-2 my-2 fhd:my-4"
                 >
                     Submit
                 </Button>

@@ -1,9 +1,15 @@
 import { QuerySnapshot, DocumentData } from 'firebase/firestore';
 
+export interface FirestoreContextProviderProps {
+    children: React.ReactNode;
+}
+
 export type FirestoreContextType = {
     babyData: BabyData | null;
+    babyName: string | null;
     babyNapTime: NapTimeData[];
     fetchBabyData: () => Promise<void>;
+    addBabyName: (value: string) => void;
 };
 
 export type BabyData = {

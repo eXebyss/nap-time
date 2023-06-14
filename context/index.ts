@@ -5,6 +5,7 @@ export {
 } from './FirestoreContext';
 export { SanityProvider, useSanityContext } from './SanityContext';
 export type {
+    FirestoreContextProviderProps,
     FirestoreContextType,
     BabyData,
     NapTimeData,

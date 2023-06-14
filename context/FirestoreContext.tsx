@@ -1,26 +1,40 @@
 'use client';
 
-import { useState, createContext, useContext, useEffect, useMemo } from 'react';
+import {
+    useState,
+    createContext,
+    useContext,
+    useEffect,
+    useMemo,
+    useCallback,
+} from 'react';
 import { useAuthContext } from '@/context/AuthContext';
 import getSubDocument from '@/firebase/firestore/getSubDocument';
-import { FirestoreContextType, BabyData, NapTimeData } from './types';
+import addSubData from '@/firebase/firestore/addSubDocument';
+import {
+    FirestoreContextProviderProps,
+    FirestoreContextType,
+    BabyData,
+    NapTimeData,
+} from './types';
 
 const FirestoreContext = createContext<FirestoreContextType>({
     babyData: null,
+    babyName: null,
     babyNapTime: [],
     fetchBabyData: async () => {},
+    addBabyName: () => {},
 });
 
 export const useFirestoreContext = () => useContext(FirestoreContext);
-
-interface FirestoreContextProviderProps {
-    children: React.ReactNode;
-}
 
 export const FirestoreContextProvider = ({
     children,
 }: FirestoreContextProviderProps): JSX.Element => {
     const [babyData, setBabyData] = useState<BabyData | null>(null);
+    const [babyName, setBabyName] = useState(
+        babyData?.result?.docs[0]?.data()?.name,
+    );
     const [babyNapTime, setBabyNapTime] = useState<NapTimeData[]>([]);
     const authContext = useAuthContext();
 
@@ -43,6 +57,14 @@ export const FirestoreContextProvider = ({
         }
     }, [babyData?.result]);
 
+    const addBabyName = useCallback(
+        (value: string) => {
+            user?.uid && addSubData('user', user.uid, 'baby', { name: value });
+            setBabyName(value);
+        },
+        [user, setBabyName],
+    );
+
     const contextValue = useMemo(() => {
         const fetchBabyData = async () => {
             if (user?.uid) {
@@ -55,8 +77,8 @@ export const FirestoreContextProvider = ({
             }
         };
 
-        return { babyData, babyNapTime, fetchBabyData };
-    }, [babyData, babyNapTime, user?.uid]);
+        return { babyData, babyName, babyNapTime, fetchBabyData, addBabyName };
+    }, [babyData, babyName, babyNapTime, user?.uid, addBabyName]);
 
     return (
         <FirestoreContext.Provider value={contextValue}>
