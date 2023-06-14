@@ -114,7 +114,7 @@ export const FirestoreContextProvider = ({
 
         return {
             babyData: state.babyData,
-            babyName: state.babyName,
+            babyName: state?.babyData?.result?.docs[0]?.data()?.name,
             babyNapTime: state.babyNapTime,
             fetchBabyData,
             addBabyName,

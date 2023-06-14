@@ -39,11 +39,13 @@ const Navbar = (): JSX.Element | null => {
                     <MenuButton />
                     <ThemeSwitch />
                 </div>
-                <div className="flex-none">
-                    <p>
-                        <span className="font-bold">{babyName}</span>
-                    </p>
-                </div>
+                {babyName && (
+                    <div className="flex-none">
+                        <p>
+                            <span className="font-bold">{babyName}</span>
+                        </p>
+                    </div>
+                )}
                 <div className="flex-none">
                     {userPhoto && (
                         <div className="avatar">

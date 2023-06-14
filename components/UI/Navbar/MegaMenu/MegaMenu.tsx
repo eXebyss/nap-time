@@ -62,6 +62,12 @@ const MegaMenu = () => {
                                         Home 🏠
                                     </Link>
                                     <Link
+                                        href="/my-account"
+                                        className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
+                                    >
+                                        Account
+                                    </Link>
+                                    <Link
                                         href="/naptime"
                                         className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
                                     >
