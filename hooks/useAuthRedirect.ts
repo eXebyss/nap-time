@@ -1,5 +1,6 @@
 import { useAuthContext } from '@/context';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 function useAuthRedirect() {
     const router = useRouter();
@@ -7,9 +8,11 @@ function useAuthRedirect() {
 
     const user = authContext?.user;
 
-    if (!user) {
-        router.push('/');
-    }
+    useEffect(() => {
+        if (!user) {
+            router.push('/');
+        }
+    }, [user, router]);
 }
 
 export default useAuthRedirect;
