@@ -30,14 +30,14 @@ const useNapTimeRecord = (napTime: NapTimeRecordData) => {
     };
 
     const dispatchAction: NapTimeRecordDispatchAction = {
-        setOpen: 'setOpen',
-        setTimeFormOpen: 'setTimeFormOpen',
-        setDateFormOpen: 'setDateFormOpen',
-        setNapTimeStart: 'setNapTimeStart',
-        setNapTimeFinish: 'setNapTimeFinish',
-        setNapDateStart: 'setNapDateStart',
-        setNapDateFinish: 'setNapDateFinish',
-        setSuccessMessage: 'setSuccessMessage',
+        setOpen: 'SET_OPEN',
+        setTimeFormOpen: 'SET_TIME_FORM_OPEN',
+        setDateFormOpen: 'SET_DATE_FORM_OPEN',
+        setNapTimeStart: 'SET_NAP_TIME_START',
+        setNapTimeFinish: 'SET_NAP_TIME_FINISH',
+        setNapDateStart: 'SET_NAP_DATE_START',
+        setNapDateFinish: 'SET_NAP_DATE_FINISH',
+        setSuccessMessage: 'SET_SUCCESS_MESSAGE',
     };
 
     const {

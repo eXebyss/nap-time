@@ -10,22 +10,22 @@ export type AddNapTimeState = {
 };
 
 export type AddNapTimeAction =
-    | { type: 'setOpen'; payload: boolean }
-    | { type: 'setFormOpen'; payload: boolean }
-    | { type: 'setNapStart'; payload: string | null }
-    | { type: 'setNapFinish'; payload: string | null }
-    | { type: 'setNapDateStart'; payload: string | null }
-    | { type: 'setNapDateFinish'; payload: string | null }
-    | { type: 'setNapType'; payload: string | null }
-    | { type: 'setSuccessMessage'; payload: string | null };
+    | { type: 'SET_OPEN'; payload: boolean }
+    | { type: 'SET_FORM_OPEN'; payload: boolean }
+    | { type: 'SET_NAP_START'; payload: string | null }
+    | { type: 'SET_NAP_FINISH'; payload: string | null }
+    | { type: 'SET_NAP_DATE_START'; payload: string | null }
+    | { type: 'SET_NAP_DATE_FINISH'; payload: string | null }
+    | { type: 'SET_NAP_TYPE'; payload: string | null }
+    | { type: 'SET_SUCCESS_MESSAGE'; payload: string | null };
 
 export type AddNapTimeDispatchAction = {
-    setOpen: 'setOpen';
-    setFormOpen: 'setFormOpen';
-    setNapStart: 'setNapStart';
-    setNapFinish: 'setNapFinish';
-    setNapDateStart: 'setNapDateStart';
-    setNapDateFinish: 'setNapDateFinish';
-    setNapType: 'setNapType';
-    setSuccessMessage: 'setSuccessMessage';
+    setOpen: 'SET_OPEN';
+    setFormOpen: 'SET_FORM_OPEN';
+    setNapStart: 'SET_NAP_START';
+    setNapFinish: 'SET_NAP_FINISH';
+    setNapDateStart: 'SET_NAP_DATE_START';
+    setNapDateFinish: 'SET_NAP_DATE_FINISH';
+    setNapType: 'SET_NAP_TYPE';
+    setSuccessMessage: 'SET_SUCCESS_MESSAGE';
 };

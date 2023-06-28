@@ -12,13 +12,13 @@ export type InitialScreenState = {
 };
 
 export type InitialScreenAction =
-    | { type: 'setEmail'; payload: string }
-    | { type: 'setPassword'; payload: string }
-    | { type: 'setConfirmPassword'; payload: string }
-    | { type: 'setShowPassword'; payload: boolean }
-    | { type: 'setShowConfirmPassword'; payload: boolean }
-    | { type: 'setPasswordSecurityLevel'; payload: string }
-    | { type: 'setIsSignInForm'; payload: boolean }
-    | { type: 'setIsSignUpForm'; payload: boolean }
-    | { type: 'setPasswordError'; payload: string | undefined }
-    | { type: 'setAuthMessage'; payload: string | undefined };
+    | { type: 'SET_EMAIL'; payload: string }
+    | { type: 'SET_PASSWORD'; payload: string }
+    | { type: 'SET_CONFIRM_PASSWORD'; payload: string }
+    | { type: 'SET_SHOW_PASSWORD'; payload: boolean }
+    | { type: 'SET_SHOW_CONFIRM_PASSWORD'; payload: boolean }
+    | { type: 'SET_PASSWORD_SECURITY_LEVEL'; payload: string }
+    | { type: 'SET_IS_SIGN_IN_FORM'; payload: boolean }
+    | { type: 'SET_IS_SIGN_UP_FORM'; payload: boolean }
+    | { type: 'SET_PASSWORD_ERROR'; payload: string | undefined }
+    | { type: 'SET_AUTH_MESSAGE'; payload: string | undefined };

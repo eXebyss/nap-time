@@ -16,24 +16,24 @@ export type NapTimeRecordState = {
 };
 
 export type NapTimeRecordAction =
-    | { type: 'setOpen'; payload: boolean }
-    | { type: 'setTimeFormOpen'; payload: boolean }
-    | { type: 'setDateFormOpen'; payload: boolean }
-    | { type: 'setNapTimeStart'; payload: string | null }
-    | { type: 'setNapTimeFinish'; payload: string | null }
-    | { type: 'setNapDateStart'; payload: string | null }
-    | { type: 'setNapDateFinish'; payload: string | null }
-    | { type: 'setSuccessMessage'; payload: string | null };
+    | { type: 'SET_OPEN'; payload: boolean }
+    | { type: 'SET_TIME_FORM_OPEN'; payload: boolean }
+    | { type: 'SET_DATE_FORM_OPEN'; payload: boolean }
+    | { type: 'SET_NAP_TIME_START'; payload: string | null }
+    | { type: 'SET_NAP_TIME_FINISH'; payload: string | null }
+    | { type: 'SET_NAP_DATE_START'; payload: string | null }
+    | { type: 'SET_NAP_DATE_FINISH'; payload: string | null }
+    | { type: 'SET_SUCCESS_MESSAGE'; payload: string | null };
 
 export type NapTimeRecordDispatchAction = {
-    setOpen: 'setOpen';
-    setTimeFormOpen: 'setTimeFormOpen';
-    setDateFormOpen: 'setDateFormOpen';
-    setNapTimeStart: 'setNapTimeStart';
-    setNapTimeFinish: 'setNapTimeFinish';
-    setNapDateStart: 'setNapDateStart';
-    setNapDateFinish: 'setNapDateFinish';
-    setSuccessMessage: 'setSuccessMessage';
+    setOpen: 'SET_OPEN';
+    setTimeFormOpen: 'SET_TIME_FORM_OPEN';
+    setDateFormOpen: 'SET_DATE_FORM_OPEN';
+    setNapTimeStart: 'SET_NAP_TIME_START';
+    setNapTimeFinish: 'SET_NAP_TIME_FINISH';
+    setNapDateStart: 'SET_NAP_DATE_START';
+    setNapDateFinish: 'SET_NAP_DATE_FINISH';
+    setSuccessMessage: 'SET_SUCCESS_MESSAGE';
 };
 
 export interface NapTimeRecordProps {

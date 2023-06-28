@@ -1,4 +1,4 @@
-import { NapTimeData } from '../types';
+import { NapTimeData } from '@/context/FirestoreContext';
 
 export interface BabyName {
     id: string;

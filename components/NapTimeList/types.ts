@@ -13,13 +13,13 @@ export type NapTimeState = {
 };
 
 export type NapTimeAction =
-    | { type: 'setSelectedYear'; payload: string }
-    | { type: 'setSelectedMonth'; payload: string }
-    | { type: 'setFilteredNapTimeYear'; payload: NapTimeData[] }
-    | { type: 'setFilteredNapTimeMonth'; payload: NapTimeData[] | null }
-    | { type: 'setTotalNapTimeYear'; payload: string | null }
-    | { type: 'setTotalNapTimeMonth'; payload: string | null }
-    | { type: 'setAverageNapTimeMonth'; payload: string | null };
+    | { type: 'SET_SELECTED_YEAR'; payload: string }
+    | { type: 'SET_SELECTED_MONTH'; payload: string }
+    | { type: 'SET_FILTERED_NAP_TIME_YEAR'; payload: NapTimeData[] }
+    | { type: 'SET_FILTERED_NAP_TIME_MONTH'; payload: NapTimeData[] | null }
+    | { type: 'SET_TOTAL_NAP_TIME_YEAR'; payload: string | null }
+    | { type: 'SET_TOTAL_NAP_TIME_MONTH'; payload: string | null }
+    | { type: 'SET_AVERAGE_NAP_TIME_MONTH'; payload: string | null };
 
 export interface NapTimeProviderProps {
     children: React.ReactNode;

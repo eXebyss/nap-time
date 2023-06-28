@@ -28,14 +28,14 @@ const useAddNapTime = () => {
     };
 
     const dispatchAction: AddNapTimeDispatchAction = {
-        setOpen: 'setOpen',
-        setFormOpen: 'setFormOpen',
-        setNapStart: 'setNapStart',
-        setNapFinish: 'setNapFinish',
-        setNapDateStart: 'setNapDateStart',
-        setNapDateFinish: 'setNapDateFinish',
-        setNapType: 'setNapType',
-        setSuccessMessage: 'setSuccessMessage',
+        setOpen: 'SET_OPEN',
+        setFormOpen: 'SET_FORM_OPEN',
+        setNapStart: 'SET_NAP_START',
+        setNapFinish: 'SET_NAP_FINISH',
+        setNapDateStart: 'SET_NAP_DATE_START',
+        setNapDateFinish: 'SET_NAP_DATE_FINISH',
+        setNapType: 'SET_NAP_TYPE',
+        setSuccessMessage: 'SET_SUCCESS_MESSAGE',
     };
 
     const {
