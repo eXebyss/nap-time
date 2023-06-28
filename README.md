@@ -8,7 +8,7 @@ The idea of the app, to give the ability to record and track the sleeping time o
 <li>Styling: TailwindCSS v3;</li>
 <li>JavaScript framework: Next.js (React v18) v13 + TypeScript v5;</li>
 <li>Testing: Cypress;</li>
-<li>Tools: Git, Github, pnpm, ESlint, Prettier;</li>
+<li>Tools: Git, Github (+ actions), pnpm, ESlint, Prettier, Husky;</li>
 <li>Authentication: Firebase;</li>
 <li>Database: Firebase Firestore;</li>
 <li>Deploy: Vercel;</li>
