@@ -11,7 +11,12 @@ const MegaMenu = () => {
 
     return (
         <>
-            <Button type="button" classes="btn-ghost" onClick={openMenuModal}>
+            <Button
+                type="button"
+                ariaLabel="Open menu"
+                classes="btn-ghost"
+                onClick={openMenuModal}
+            >
                 <RiMenuFill />
             </Button>
             <Transition appear show={isMenuOpen} as={Fragment}>
@@ -49,6 +54,7 @@ const MegaMenu = () => {
                                     >
                                         <Button
                                             type="button"
+                                            ariaLabel="Close menu"
                                             classes="btn-ghost"
                                             onClick={closeMenuModal}
                                         >

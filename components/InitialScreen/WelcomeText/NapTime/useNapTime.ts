@@ -1,9 +1,9 @@
 import moment from 'moment';
-import { useFirestoreContext } from '@/context/FirestoreContext';
+import { useBabyContext } from '@/context';
 import { NapTimeData } from './types';
 
 const useNapTime = () => {
-    const { babyName, babyNapTime } = useFirestoreContext();
+    const { babyName, babyNapTime } = useBabyContext();
 
     const today = moment().startOf('day');
     const currentDayNapTime = babyNapTime?.filter((napTime: NapTimeData) => {

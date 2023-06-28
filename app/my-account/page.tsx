@@ -1,5 +1,6 @@
-import { Metadata } from 'next';
+import MyAccount from '@/components/MyAccount/MyAccount';
 import { siteTitle } from '@/constants';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: `${siteTitle}: My Account`,
@@ -8,10 +9,10 @@ export const metadata: Metadata = {
     },
 };
 
-export default function NapTime() {
+export default function MyAccountPage() {
     return (
         <main>
-            <h1>My Account</h1>
+            <MyAccount />
         </main>
     );
 }

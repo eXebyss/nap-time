@@ -21,6 +21,7 @@ const InitialButtons = () => {
             <div className="grid h-20 flex-grow rounded-box place-items-center">
                 <Button
                     type="button"
+                    ariaLabel="Sign In"
                     onClick={handleSwitchToSignIn}
                     classes="btn-outline mx-4"
                 >
@@ -31,6 +32,7 @@ const InitialButtons = () => {
             <div className="grid h-20 flex-grow rounded-box place-items-center">
                 <Button
                     type="button"
+                    ariaLabel="Sign Up"
                     onClick={handleSwitchToSignUp}
                     classes="btn-outline mx-4 "
                 >

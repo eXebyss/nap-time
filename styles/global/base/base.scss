@@ -97,7 +97,9 @@ svg {
 
 button {
     @apply my-2 
-        md:my-4;
+        md:my-4
+        text-sm
+        md:text-base;
 }
 
 /* width */

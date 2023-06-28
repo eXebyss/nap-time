@@ -5,36 +5,21 @@ import {
     useContext,
     useEffect,
     useMemo,
-    useCallback,
     useReducer,
 } from 'react';
+
 import { useAuthContext } from '@/context/AuthContext';
 import getSubDocument from '@/firebase/firestore/getSubDocument';
-import addSubData from '@/firebase/firestore/addSubDocument';
 import {
     FirestoreContextProviderProps,
     FirestoreContextType,
-    BabyData,
-    NapTimeData,
+    FirestoreContextAction,
+    FirestoreContextState,
 } from './types';
-
-interface FirestoreContexState {
-    babyData: BabyData | null;
-    babyName: string | null;
-    babyNapTime: NapTimeData[];
-}
-
-type FirestoreContextAction =
-    | { type: 'SET_BABY_DATA'; payload: BabyData }
-    | { type: 'SET_BABY_NAME'; payload: string }
-    | { type: 'SET_BABY_NAP_TIME'; payload: NapTimeData[] };
 
 const FirestoreContext = createContext<FirestoreContextType>({
     babyData: null,
-    babyName: null,
-    babyNapTime: [],
-    fetchBabyData: async () => {},
-    addBabyName: () => {},
+    fetchFirestoreData: async () => {},
 });
 
 export const useFirestoreContext = () => useContext(FirestoreContext);
@@ -45,23 +30,17 @@ export const FirestoreContextProvider = ({
     const authContext = useAuthContext();
     const user = authContext?.user;
 
-    const initialState: FirestoreContexState = {
+    const initialState: FirestoreContextState = {
         babyData: null,
-        babyName: null,
-        babyNapTime: [],
     };
 
     const reducer = (
-        state: FirestoreContexState,
+        state: FirestoreContextState,
         action: FirestoreContextAction,
     ) => {
         switch (action.type) {
             case 'SET_BABY_DATA':
                 return { ...state, babyData: action.payload };
-            case 'SET_BABY_NAME':
-                return { ...state, babyName: action.payload };
-            case 'SET_BABY_NAP_TIME':
-                return { ...state, babyNapTime: action.payload };
             default:
                 return state;
         }
@@ -80,46 +59,22 @@ export const FirestoreContextProvider = ({
         }
     }, [user?.uid]);
 
-    useEffect(() => {
-        if (state.babyData?.result) {
-            dispatch({
-                type: 'SET_BABY_NAP_TIME',
-                payload: state.babyData.result?.docs[0]?.data()?.napTime,
-            });
-        }
-    }, [state.babyData?.result]);
-
-    const addBabyName = useCallback(
-        (value: string) => {
-            user?.uid && addSubData('user', user.uid, 'baby', { name: value });
-            dispatch({ type: 'SET_BABY_NAME', payload: value });
-        },
-        [user],
-    );
-
     const contextValue = useMemo(() => {
-        const fetchBabyData = async () => {
+        const fetchFirestoreData = async () => {
             if (user?.uid) {
                 const data = await getSubDocument('user', user?.uid, 'baby');
 
                 if (data?.result) {
                     dispatch({ type: 'SET_BABY_DATA', payload: data });
-                    dispatch({
-                        type: 'SET_BABY_NAP_TIME',
-                        payload: data.result?.docs[0]?.data()?.napTime,
-                    });
                 }
             }
         };
 
         return {
             babyData: state.babyData,
-            babyName: state?.babyData?.result?.docs[0]?.data()?.name,
-            babyNapTime: state.babyNapTime,
-            fetchBabyData,
-            addBabyName,
+            fetchFirestoreData,
         };
-    }, [state, user?.uid, addBabyName]);
+    }, [state, user?.uid]);
 
     return (
         <FirestoreContext.Provider value={contextValue}>

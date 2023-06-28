@@ -1,6 +1,6 @@
 import { useAuthContext } from '@/context/AuthContext';
 import deleteSubDocumentArrayItem from '@/firebase/firestore/deleteSubDocFieldData';
-import { useFirestoreContext } from '@/context';
+import { useBabyContext, useFirestoreContext } from '@/context';
 import moment from 'moment';
 import { useEffect, useReducer } from 'react';
 import updateSubDocumentField from '@/firebase/firestore/updateSubDocFieldData';
@@ -13,7 +13,8 @@ import {
 
 const useNapTimeRecord = (napTime: NapTimeRecordData) => {
     const authContext = useAuthContext();
-    const { babyData, babyNapTime, fetchBabyData } = useFirestoreContext();
+    const { babyData } = useFirestoreContext();
+    const { babyNapTime, fetchBabyData } = useBabyContext();
 
     const user = authContext?.user;
 

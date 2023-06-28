@@ -33,11 +33,21 @@ const AddNapTime = () => {
     } = useAddNapTime();
 
     const openCloseButton = isOpen ? (
-        <Button type="button" classes="btn-ghost p-0" onClick={onAdd}>
+        <Button
+            type="button"
+            ariaLabel="Close"
+            classes="btn-ghost p-0"
+            onClick={onAdd}
+        >
             <FaRegMinusSquare className="w-12 h-12" />
         </Button>
     ) : (
-        <Button type="button" classes="btn-ghost p-0" onClick={onAdd}>
+        <Button
+            type="button"
+            ariaLabel="Open"
+            classes="btn-ghost p-0"
+            onClick={onAdd}
+        >
             <FaRegPlusSquare className="w-12 h-12" />
         </Button>
     );
@@ -180,7 +190,8 @@ const AddNapTime = () => {
                 (napType !== '🌚' ||
                     (napType === '🌚' && napDateFinish && napDateStart)) && (
                     <Button
-                        type="button"
+                        type="submit"
+                        ariaLabel="Submit"
                         onClick={() => addNapTime()}
                         classes="btn-ghost ml-2"
                     >

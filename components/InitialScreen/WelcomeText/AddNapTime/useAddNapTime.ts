@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import moment from 'moment';
-import { useFirestoreContext } from '@/context/FirestoreContext';
+import { useBabyContext } from '@/context';
 import { useAuthContext } from '@/context/AuthContext';
 import updateSubData from '@/firebase/firestore/updateSubDocument';
 import { arrayUnion } from 'firebase/firestore';
@@ -12,7 +12,7 @@ import {
 
 const useAddNapTime = () => {
     const authContext = useAuthContext();
-    const { babyData, fetchBabyData } = useFirestoreContext();
+    const { babyId, fetchBabyData } = useBabyContext();
 
     const user = authContext?.user;
 
@@ -133,21 +133,15 @@ const useAddNapTime = () => {
 
         let result = null;
 
-        babyData?.result?.docs[0]?.id &&
+        babyId &&
             user?.uid &&
-            (result = await updateSubData(
-                'user',
-                user.uid,
-                'baby',
-                babyData?.result?.docs[0]?.id,
-                {
-                    napTime: arrayUnion({
-                        start: napStartDate.format('YYYY-MM-DD HH:mm'),
-                        finish: napFinishDate.format('YYYY-MM-DD HH:mm'),
-                        type: napType,
-                    }),
-                },
-            ));
+            (result = await updateSubData('user', user.uid, 'baby', babyId, {
+                napTime: arrayUnion({
+                    start: napStartDate.format('YYYY-MM-DD HH:mm'),
+                    finish: napFinishDate.format('YYYY-MM-DD HH:mm'),
+                    type: napType,
+                }),
+            }));
 
         if (!result) {
             dispatch({
@@ -189,21 +183,15 @@ const useAddNapTime = () => {
 
         let result = null;
 
-        babyData?.result?.docs[0]?.id &&
+        babyId &&
             user?.uid &&
-            (result = await updateSubData(
-                'user',
-                user.uid,
-                'baby',
-                babyData?.result?.docs[0]?.id,
-                {
-                    napTime: arrayUnion({
-                        start: napStartDate.format('YYYY-MM-DD HH:mm'),
-                        finish: napFinishDate.format('YYYY-MM-DD HH:mm'),
-                        type: napType,
-                    }),
-                },
-            ));
+            (result = await updateSubData('user', user.uid, 'baby', babyId, {
+                napTime: arrayUnion({
+                    start: napStartDate.format('YYYY-MM-DD HH:mm'),
+                    finish: napFinishDate.format('YYYY-MM-DD HH:mm'),
+                    type: napType,
+                }),
+            }));
 
         if (!result) {
             dispatch({

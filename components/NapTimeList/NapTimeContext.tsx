@@ -9,7 +9,7 @@ import {
     useEffect,
 } from 'react';
 import moment from 'moment';
-import { NapTimeData, useFirestoreContext } from '@/context';
+import { NapTimeData, useBabyContext } from '@/context';
 import { useBrowserCheck } from '@/hooks';
 import {
     NapTimeListData,
@@ -43,7 +43,7 @@ export const useNapTimeContext = (): INapTimeContext =>
 export const NapTimeContextProvider = ({
     children,
 }: NapTimeProviderProps): JSX.Element => {
-    const { babyNapTime } = useFirestoreContext();
+    const { babyNapTime } = useBabyContext();
     const isBrowser = useBrowserCheck();
 
     const initialState: NapTimeState = {

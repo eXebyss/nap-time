@@ -68,6 +68,7 @@ const NapTimeCard = ({
                                     >
                                         <Button
                                             type="button"
+                                            ariaLabel="Close card"
                                             classes="btn-ghost my-0"
                                             onClick={closeCardModal}
                                         >

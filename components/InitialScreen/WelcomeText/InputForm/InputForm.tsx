@@ -23,6 +23,7 @@ const InputForm = ({ placeholder, buttonHandler }: InputFormProps) => {
             {value && (
                 <Button
                     type="button"
+                    ariaLabel="Submit"
                     onClick={() => buttonHandler(value)}
                     classes="btn-ghost ml-2 my-2 fhd:my-4"
                 >

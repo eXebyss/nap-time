@@ -2,7 +2,11 @@
 import { Coda } from 'next/font/google';
 import Footer from '@/components/UI/Footer/Footer';
 import '../styles/global/global.scss';
-import { AuthContextProvider, FirestoreContextProvider } from '@/context';
+import {
+    AuthContextProvider,
+    FirestoreContextProvider,
+    BabyContextProvider,
+} from '@/context';
 import { ogUrl, siteDescription, siteTitle } from '@/constants';
 import { Metadata } from 'next';
 import Navbar from '@/components/UI/Navbar/Navbar';
@@ -189,8 +193,10 @@ export default function RootLayout({
             <body>
                 <AuthContextProvider>
                     <FirestoreContextProvider>
-                        <Navbar />
-                        {children}
+                        <BabyContextProvider>
+                            <Navbar />
+                            {children}
+                        </BabyContextProvider>
                     </FirestoreContextProvider>
                 </AuthContextProvider>
                 <Footer />

@@ -7,6 +7,7 @@ import MenuButton from './MegaMenu';
 import useNavbar from './useNavbar';
 import NavbarShimmer from './NavbarShimmer';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
+import BabySelector from '../BabySelector/BabySelector';
 
 const Navbar = (): JSX.Element | null => {
     const { loading, user, babyName, userName, userPhoto } = useNavbar();
@@ -39,13 +40,7 @@ const Navbar = (): JSX.Element | null => {
                     <MenuButton />
                     <ThemeSwitch />
                 </div>
-                {babyName && (
-                    <div className="flex-none">
-                        <p>
-                            <span className="font-bold">{babyName}</span>
-                        </p>
-                    </div>
-                )}
+                {babyName && <BabySelector />}
                 <div className="flex-none">
                     {userPhoto && (
                         <div className="avatar">

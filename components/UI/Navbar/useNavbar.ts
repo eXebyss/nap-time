@@ -1,9 +1,9 @@
+import { useBabyContext } from '@/context';
 import { useAuthContext } from '@/context/AuthContext';
-import { useFirestoreContext } from '@/context/FirestoreContext';
 
 const useNavbar = () => {
     const authContext = useAuthContext();
-    const { babyName } = useFirestoreContext();
+    const { babyName } = useBabyContext();
 
     const user = authContext?.user;
     const loading = authContext?.loading;

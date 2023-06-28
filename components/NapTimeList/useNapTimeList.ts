@@ -1,7 +1,7 @@
-import { useFirestoreContext } from '@/context';
+import { useBabyContext } from '@/context';
 
 const useNapTimeList = () => {
-    const { babyNapTime } = useFirestoreContext();
+    const { babyNapTime } = useBabyContext();
 
     return {
         babyNapTime,

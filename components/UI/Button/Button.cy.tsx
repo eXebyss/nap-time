@@ -4,11 +4,17 @@ describe('Button component', () => {
     it('should render the button with the correct props', () => {
         const buttonText = 'Click me';
         const type = 'button';
+        const ariaLabel = 'aria-label';
         const onClick = cy.stub().as('clickEvent');
         const classes = 'bg-blue-500 text-white';
 
         cy.mount(
-            <Button type={type} onClick={onClick} classes={classes}>
+            <Button
+                type={type}
+                ariaLabel={ariaLabel}
+                onClick={onClick}
+                classes={classes}
+            >
                 {buttonText}
             </Button>,
         );

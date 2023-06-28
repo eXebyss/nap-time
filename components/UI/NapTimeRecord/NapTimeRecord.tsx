@@ -100,6 +100,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                   napTimeFinish && (
                       <Button
                           type="button"
+                          ariaLabel="Save"
                           onClick={() =>
                               updateNapTime(
                                   napTime,
@@ -118,6 +119,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                   napDateFinish && (
                       <Button
                           type="button"
+                          ariaLabel="Save"
                           onClick={() =>
                               updateNapDate(
                                   napTime,
@@ -147,6 +149,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                         {(isOpen || isTimeFormOpen) && (
                             <Button
                                 type="button"
+                                ariaLabel="Open dates"
                                 classes="btn-ghost my-0"
                                 onClick={dateEdit}
                             >
@@ -155,6 +158,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                         )}
                         <Button
                             type="button"
+                            ariaLabel="Edit"
                             classes="btn-ghost my-0"
                             onClick={timeEdit}
                         >
@@ -162,6 +166,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                         </Button>
                         <Button
                             type="button"
+                            ariaLabel="Delete"
                             classes="btn-ghost my-0"
                             onClick={() => deleteData(index)}
                         >
