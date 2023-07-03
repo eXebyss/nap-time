@@ -86,6 +86,12 @@ const MegaMenu = () => {
                                         Installation Guide
                                     </Link>
                                     <Link
+                                        href="/privacy-policy"
+                                        className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
+                                    >
+                                        Privacy Policy
+                                    </Link>
+                                    <Link
                                         href="https://www.mihailsfjodorovs.com/#contact"
                                         className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
                                     >
