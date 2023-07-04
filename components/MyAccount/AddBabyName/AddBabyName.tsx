@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBabyContext } from '@/context';
-import InputForm from '@/components/InitialScreen/WelcomeText/InputForm/InputForm';
+import InputForm from '@/components/UI/InputForm/InputForm';
 import Button from '@/components/UI/Button/Button';
 
 const AddBabyName = () => {

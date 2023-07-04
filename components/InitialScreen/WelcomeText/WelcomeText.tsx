@@ -1,6 +1,6 @@
 'use client';
 
-import InputForm from './InputForm/InputForm';
+import InputForm from '@/components/UI/InputForm/InputForm';
 import AddNapTime from './AddNapTime';
 import useWelcomeText from './useWelcomeText';
 import NapTime from './NapTime/NapTime';

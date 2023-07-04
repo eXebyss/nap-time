@@ -18,7 +18,7 @@ const InputForm = ({ placeholder, buttonHandler }: InputFormProps) => {
                 type="text"
                 placeholder={placeholder}
                 onChange={(e) => setValue(e.target.value)}
-                classes="input input-ghost w-full max-w-xs my-2 fhd:my-4 text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4"
+                classes="input input-ghost w-full max-w-xs my-2 fhd:my-4 text-center focus:text-start fhd:text-start placeholder:text-center focus:placeholder:text-start"
             />
             {value && (
                 <Button
