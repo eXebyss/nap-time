@@ -3,9 +3,9 @@ import NapTimeList from '@/components/NapTimeList/NapTimeList';
 import { siteTitle } from '@/constants';
 
 export const metadata: Metadata = {
-    title: `${siteTitle}: Installation`,
+    title: `${siteTitle}: Nap History`,
     openGraph: {
-        title: `${siteTitle}: Installation`,
+        title: `${siteTitle}: Nap History`,
     },
 };
 
