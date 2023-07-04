@@ -17,9 +17,6 @@ dependencies:
   '@portabletext/react':
     specifier: ^3.0.0
     version: 3.0.0(react@18.2.0)
-  '@sanity/block-content-to-react':
-    specifier: ^3.0.0
-    version: 3.0.0(react@18.2.0)
   '@sanity/icons':
     specifier: ^2.1.0
     version: 2.3.1(react@18.2.0)
@@ -2850,25 +2847,6 @@ packages:
       rxjs: 7.8.0
     dev: false
 
-  /@sanity/block-content-to-hyperscript@3.0.0:
-    resolution: {integrity: sha512-uoXWLdFY5LqO8A9sFJqnZWWDCBC+0r3Egeh0bwKQ2EK2Vil5L40iJGNXMZhDB8BnvH+6B4155SU8Q3vY59T6pA==}
-    dependencies:
-      '@sanity/generate-help-url': 0.140.0
-      '@sanity/image-url': 0.140.22
-      hyperscript: 2.0.2
-      object-assign: 4.1.1
-    dev: false
-
-  /@sanity/block-content-to-react@3.0.0(react@18.2.0):
-    resolution: {integrity: sha512-oHPLlIsulsnL3ITs93RIvUPBI6nAeoSFOUf16vX4T7z4wWywxP39N1DF9mAx2tV6Kjr1fJAx5GF7zfiMXYLaqA==}
-    peerDependencies:
-      react: '>=15.0.0'
-    dependencies:
-      '@sanity/block-content-to-hyperscript': 3.0.0
-      prop-types: 15.8.1
-      react: 18.2.0
-    dev: false
-
   /@sanity/block-tools@3.14.1:
     resolution: {integrity: sha512-nDGJ/PzlvXtZHLnhKfuBkVJA36B5HC+SijutmYhWV8t5SO7o4O8sQmdfGdBGetHy/u+4vpx55xl3j7Xe6C5w7g==}
     dependencies:
@@ -2973,10 +2951,6 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/generate-help-url@0.140.0:
-    resolution: {integrity: sha512-H/G/WA9S22TXcXST52CIiTsHx3S2hH0gvK7LnI5w76vfKS0obnDPh8jrPg4xeNRYGPuV9MHYRlyERGpRGoo4Qw==}
-    dev: false
-
   /@sanity/generate-help-url@3.0.0:
     resolution: {integrity: sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==}
     dev: false
@@ -3014,11 +2988,6 @@ packages:
       react: ^18
     dependencies:
       react: 18.2.0
-    dev: false
-
-  /@sanity/image-url@0.140.22:
-    resolution: {integrity: sha512-CAmQZnj+KM7FSEYiWlIGDit072syicYuAw0w7R2ctMzHiZ4p9mE/g6dBnYqrqFUrw2J+GpJgPt+RVspKP8vdqA==}
-    engines: {node: '>=10.0.0'}
     dev: false
 
   /@sanity/image-url@1.0.2:
@@ -4259,10 +4228,6 @@ packages:
     dependencies:
       fill-range: 7.0.1
 
-  /browser-split@0.0.0:
-    resolution: {integrity: sha512-CNXO3AXAS1H/kOGQkPjucm1161/XoF3aVkMfujqwk85XN/D/MkQMvoB81lXyX/2rerZS+hPAYYRR3mAW05awjQ==}
-    dev: false
-
   /browserify-zlib@0.1.4:
     resolution: {integrity: sha512-19OEpq7vWgsH6WkvkBJQDFvJS1uPcbFOQ4v9CU839dO+ZZXUZO6XpE6hNCqvlIIj+4fZvRiJ6DsAQ382GwiyTQ==}
     dependencies:
@@ -4394,12 +4359,6 @@ packages:
   /ci-info@3.8.0:
     resolution: {integrity: sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==}
     engines: {node: '>=8'}
-    dev: false
-
-  /class-list@0.1.1:
-    resolution: {integrity: sha512-zqR0uW+VsLtyQhixBhkdQ+z6B8+Y8HTh28kdSVjJ4zTTKM7Xz2asAQSya9VI6m/34F6N6Ktm0mrchKB+E5a8Xw==}
-    dependencies:
-      indexof: 0.0.1
     dev: false
 
   /classnames@2.3.2:
@@ -6348,13 +6307,6 @@ packages:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
     dev: false
 
-  /html-element@2.3.1:
-    resolution: {integrity: sha512-xnFt2ZkbFcjc+JoAtg3Hl89VeEZDjododu4VCPkRvFmBTHHA9U1Nt6hLUWfW2O+6Sl/rT1hHK/PivleX3PdBJQ==}
-    engines: {node: '>=4.2'}
-    dependencies:
-      class-list: 0.1.1
-    dev: false
-
   /html-encoding-sniffer@3.0.0:
     resolution: {integrity: sha512-oWv4T4yJ52iKrufjnyZPkrN0CH3QnrUqdB6In1g5Fe1mia8GmF36gnfNySxoZtxD5+NmYw1EElVXiBk93UeskA==}
     engines: {node: '>=12'}
@@ -6411,14 +6363,6 @@ packages:
     hasBin: true
     dev: false
 
-  /hyperscript@2.0.2:
-    resolution: {integrity: sha512-uggBAYfHFC5WyZQXlJ61BNZbPmJbschcvfYNhYdZWCp+0J8KYb5Du8nQuk8Ru+ThoCNb01B0tPtnTRqnrFBkVg==}
-    dependencies:
-      browser-split: 0.0.0
-      class-list: 0.1.1
-      html-element: 2.3.1
-    dev: false
-
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
@@ -6460,10 +6404,6 @@ packages:
   /indent-string@4.0.0:
     resolution: {integrity: sha512-EdDDZu4A2OyIK7Lr/2zG+w5jmbuk1DVBnEwREQvBzspBJkCEbRa8GxU1lghYcaGJCnRWibjDXlq779X1/y5xwg==}
     engines: {node: '>=8'}
-    dev: false
-
-  /indexof@0.0.1:
-    resolution: {integrity: sha512-i0G7hLJ1z0DE8dsqJa2rycj9dBmNKgXBvotXtZYXakU9oivfB9Uj2ZBC27qqef2U58/ZLwalxa1X/RDCdkHtVg==}
     dev: false
 
   /inflight@1.0.6:

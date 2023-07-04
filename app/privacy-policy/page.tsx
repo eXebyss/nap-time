@@ -1,4 +1,4 @@
-import BlockContent from '@sanity/block-content-to-react';
+import { PortableText } from '@portabletext/react';
 import { getSanityData } from '@/utils';
 
 const PrivacyPolicyPage = async () => {
@@ -13,7 +13,7 @@ const PrivacyPolicyPage = async () => {
                     <h1 className="text-center mb-4 fhd:mb-8">
                         {privacyPolicyData[0].title}
                     </h1>
-                    <BlockContent blocks={privacyPolicyData[0].content} />
+                    <PortableText value={privacyPolicyData[0].content} />
                 </div>
             </div>
         </div>
