@@ -1,6 +1,7 @@
 'use client';
 
 import { v4 as uuidv4 } from 'uuid';
+import { useAuthRedirect } from '@/hooks';
 import { useNapTimeContext } from './NapTimeContext';
 import NapTimeYearSelector from './NapTimeYearSelector/NapTimeYearSelector';
 import NapTimeMonthSelector from './NapTimeMonthSelector/NapTimeMonthSelector';
@@ -18,6 +19,8 @@ const NapTimeList = () => {
         },
         uniqueDays,
     } = useNapTimeContext();
+
+    useAuthRedirect();
 
     return (
         <div className="p-4 grid gap-y-4 justify-center bg-base-200">

@@ -6,6 +6,7 @@ const LogoutButton = () => {
     return (
         <Button
             type="button"
+            ariaLabel="Logout"
             aria-label="log out"
             onClick={logOut}
             classes="btn btn-square btn-ghost !my-0 !md:my-0"

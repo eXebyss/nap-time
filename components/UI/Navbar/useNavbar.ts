@@ -1,20 +1,17 @@
+import { useBabyContext } from '@/context';
 import { useAuthContext } from '@/context/AuthContext';
-import { useFirestoreContext } from '@/context/FirestoreContext';
 
 const useNavbar = () => {
     const authContext = useAuthContext();
-    const { babyData } = useFirestoreContext();
+    const { babyName } = useBabyContext();
 
     const user = authContext?.user;
     const loading = authContext?.loading;
 
     const userName = user?.displayName ? user.displayName : user?.email;
+    const userPhoto = user?.photoURL ? user?.photoURL : '';
 
-    const babyName = babyData?.result
-        ? babyData.result?.docs[0]?.data()?.name
-        : null;
-
-    return { user, loading, userName, babyName };
+    return { user, loading, userName, babyName, userPhoto };
 };
 
 export default useNavbar;

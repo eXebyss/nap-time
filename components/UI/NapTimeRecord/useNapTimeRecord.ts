@@ -1,6 +1,6 @@
 import { useAuthContext } from '@/context/AuthContext';
 import deleteSubDocumentArrayItem from '@/firebase/firestore/deleteSubDocFieldData';
-import { useFirestoreContext } from '@/context';
+import { useBabyContext, useFirestoreContext } from '@/context';
 import moment from 'moment';
 import { useEffect, useReducer } from 'react';
 import updateSubDocumentField from '@/firebase/firestore/updateSubDocFieldData';
@@ -11,9 +11,10 @@ import {
     NapTimeRecordData,
 } from './types';
 
-const useNapTimeRecord = () => {
+const useNapTimeRecord = (napTime: NapTimeRecordData) => {
     const authContext = useAuthContext();
-    const { babyData, babyNapTime, fetchBabyData } = useFirestoreContext();
+    const { babyData } = useFirestoreContext();
+    const { babyNapTime, fetchBabyData } = useBabyContext();
 
     const user = authContext?.user;
 
@@ -29,14 +30,14 @@ const useNapTimeRecord = () => {
     };
 
     const dispatchAction: NapTimeRecordDispatchAction = {
-        setOpen: 'setOpen',
-        setTimeFormOpen: 'setTimeFormOpen',
-        setDateFormOpen: 'setDateFormOpen',
-        setNapTimeStart: 'setNapTimeStart',
-        setNapTimeFinish: 'setNapTimeFinish',
-        setNapDateStart: 'setNapDateStart',
-        setNapDateFinish: 'setNapDateFinish',
-        setSuccessMessage: 'setSuccessMessage',
+        setOpen: 'SET_OPEN',
+        setTimeFormOpen: 'SET_TIME_FORM_OPEN',
+        setDateFormOpen: 'SET_DATE_FORM_OPEN',
+        setNapTimeStart: 'SET_NAP_TIME_START',
+        setNapTimeFinish: 'SET_NAP_TIME_FINISH',
+        setNapDateStart: 'SET_NAP_DATE_START',
+        setNapDateFinish: 'SET_NAP_DATE_FINISH',
+        setSuccessMessage: 'SET_SUCCESS_MESSAGE',
     };
 
     const {
@@ -102,16 +103,7 @@ const useNapTimeRecord = () => {
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    const {
-        isOpen,
-        isTimeFormOpen,
-        isDateFormOpen,
-        napTimeStart,
-        napTimeFinish,
-        napDateStart,
-        napDateFinish,
-        successMessage,
-    } = state;
+    const { isOpen, isTimeFormOpen, isDateFormOpen, successMessage } = state;
 
     const timeEdit = () => {
         dispatch({
@@ -159,6 +151,7 @@ const useNapTimeRecord = () => {
                 {
                     start: napStartDate.format('YYYY-MM-DD HH:mm'),
                     finish: napFinishDate.format('YYYY-MM-DD HH:mm'),
+                    type: '🌞',
                 },
             ));
 
@@ -214,6 +207,7 @@ const useNapTimeRecord = () => {
                 {
                     start: napStartDate.format('YYYY-MM-DD HH:mm'),
                     finish: napFinishDate.format('YYYY-MM-DD HH:mm'),
+                    type: '🌚',
                 },
             ));
 
@@ -255,7 +249,37 @@ const useNapTimeRecord = () => {
             }, 2500);
     }, [successMessage, setSuccessMessage]);
 
-    const deleteData = async (index: number) => {
+    const findIndexByNapTime = () => {
+        const napTimeArray = babyData?.result?.docs[0]?.data()?.napTime;
+
+        if (napTimeArray) {
+            return napTimeArray.findIndex(
+                (item: { start: string; finish: string }) => {
+                    return (
+                        item.start === napTime.start &&
+                        item.finish === napTime.finish
+                    );
+                },
+            );
+        }
+
+        return -1;
+    };
+
+    const deleteData = async (index?: number) => {
+        if (index) {
+            babyData?.result?.docs[0]?.id &&
+                user?.uid &&
+                (await deleteSubDocumentArrayItem(
+                    'user',
+                    user.uid,
+                    'baby',
+                    babyData?.result?.docs[0]?.id,
+                    'napTime',
+                    babyData?.result?.docs[0]?.data()?.napTime[index],
+                ));
+        }
+
         babyData?.result?.docs[0]?.id &&
             user?.uid &&
             (await deleteSubDocumentArrayItem(
@@ -264,16 +288,16 @@ const useNapTimeRecord = () => {
                 'baby',
                 babyData?.result?.docs[0]?.id,
                 'napTime',
-                babyData?.result?.docs[0]?.data()?.napTime[index],
+                babyData?.result?.docs[0]?.data()?.napTime[
+                    findIndexByNapTime()
+                ],
             ));
 
         fetchBabyData();
     };
 
     return {
-        isOpen,
-        isTimeFormOpen,
-        isDateFormOpen,
+        state,
         timeEdit,
         dateEdit,
         dispatch,
@@ -281,13 +305,8 @@ const useNapTimeRecord = () => {
         setNapTimeFinish,
         setNapDateStart,
         setNapDateFinish,
-        napTimeStart,
-        napTimeFinish,
-        napDateStart,
-        napDateFinish,
         updateNapTime,
         updateNapDate,
-        successMessage,
         babyNapTime,
         deleteData,
     };

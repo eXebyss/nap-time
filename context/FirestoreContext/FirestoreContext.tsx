@@ -1,62 +1,80 @@
 'use client';
 
-import { useState, createContext, useContext, useEffect, useMemo } from 'react';
+import {
+    createContext,
+    useContext,
+    useEffect,
+    useMemo,
+    useReducer,
+} from 'react';
+
 import { useAuthContext } from '@/context/AuthContext';
 import getSubDocument from '@/firebase/firestore/getSubDocument';
-import { FirestoreContextType, BabyData, NapTimeData } from './types';
+import {
+    FirestoreContextProviderProps,
+    FirestoreContextType,
+    FirestoreContextAction,
+    FirestoreContextState,
+} from './types';
 
 const FirestoreContext = createContext<FirestoreContextType>({
     babyData: null,
-    babyNapTime: [],
-    fetchBabyData: async () => {},
+    fetchFirestoreData: async () => {},
 });
 
 export const useFirestoreContext = () => useContext(FirestoreContext);
 
-interface FirestoreContextProviderProps {
-    children: React.ReactNode;
-}
-
 export const FirestoreContextProvider = ({
     children,
 }: FirestoreContextProviderProps): JSX.Element => {
-    const [babyData, setBabyData] = useState<BabyData | null>(null);
-    const [babyNapTime, setBabyNapTime] = useState<NapTimeData[]>([]);
     const authContext = useAuthContext();
-
     const user = authContext?.user;
+
+    const initialState: FirestoreContextState = {
+        babyData: null,
+    };
+
+    const reducer = (
+        state: FirestoreContextState,
+        action: FirestoreContextAction,
+    ) => {
+        switch (action.type) {
+            case 'SET_BABY_DATA':
+                return { ...state, babyData: action.payload };
+            default:
+                return state;
+        }
+    };
+
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
         if (user?.uid) {
             const fetchData = async () => {
                 const data = await getSubDocument('user', user?.uid, 'baby');
-                setBabyData(data);
+                dispatch({ type: 'SET_BABY_DATA', payload: data });
             };
 
             fetchData();
         }
     }, [user?.uid]);
 
-    useEffect(() => {
-        if (babyData?.result) {
-            setBabyNapTime(babyData.result?.docs[0]?.data()?.napTime);
-        }
-    }, [babyData?.result]);
-
     const contextValue = useMemo(() => {
-        const fetchBabyData = async () => {
+        const fetchFirestoreData = async () => {
             if (user?.uid) {
                 const data = await getSubDocument('user', user?.uid, 'baby');
 
                 if (data?.result) {
-                    setBabyData(data);
-                    setBabyNapTime(data.result?.docs[0]?.data()?.napTime);
+                    dispatch({ type: 'SET_BABY_DATA', payload: data });
                 }
             }
         };
 
-        return { babyData, babyNapTime, fetchBabyData };
-    }, [babyData, babyNapTime, user?.uid]);
+        return {
+            babyData: state.babyData,
+            fetchFirestoreData,
+        };
+    }, [state, user?.uid]);
 
     return (
         <FirestoreContext.Provider value={contextValue}>

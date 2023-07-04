@@ -9,7 +9,7 @@ import {
     useEffect,
 } from 'react';
 import moment from 'moment';
-import { NapTimeData, useFirestoreContext } from '@/context';
+import { NapTimeData, useBabyContext } from '@/context';
 import { useBrowserCheck } from '@/hooks';
 import {
     NapTimeListData,
@@ -43,7 +43,7 @@ export const useNapTimeContext = (): INapTimeContext =>
 export const NapTimeContextProvider = ({
     children,
 }: NapTimeProviderProps): JSX.Element => {
-    const { babyNapTime } = useFirestoreContext();
+    const { babyNapTime } = useBabyContext();
     const isBrowser = useBrowserCheck();
 
     const initialState: NapTimeState = {
@@ -61,37 +61,37 @@ export const NapTimeContextProvider = ({
         action: NapTimeAction,
     ) => {
         switch (action.type) {
-            case 'setSelectedYear':
+            case 'SET_SELECTED_YEAR':
                 return {
                     ...state,
                     selectedYear: action.payload,
                 };
-            case 'setSelectedMonth':
+            case 'SET_SELECTED_MONTH':
                 return {
                     ...state,
                     selectedMonth: action.payload,
                 };
-            case 'setFilteredNapTimeYear':
+            case 'SET_FILTERED_NAP_TIME_YEAR':
                 return {
                     ...state,
                     filteredNapTimeYear: action.payload,
                 };
-            case 'setFilteredNapTimeMonth':
+            case 'SET_FILTERED_NAP_TIME_MONTH':
                 return {
                     ...state,
                     filteredNapTimeMonth: action.payload,
                 };
-            case 'setTotalNapTimeYear':
+            case 'SET_TOTAL_NAP_TIME_YEAR':
                 return {
                     ...state,
                     totalNapTimeYear: action.payload,
                 };
-            case 'setTotalNapTimeMonth':
+            case 'SET_TOTAL_NAP_TIME_MONTH':
                 return {
                     ...state,
                     totalNapTimeMonth: action.payload,
                 };
-            case 'setAverageNapTimeMonth':
+            case 'SET_AVERAGE_NAP_TIME_MONTH':
                 return {
                     ...state,
                     averageNapTimeMonth: action.payload,
@@ -107,7 +107,7 @@ export const NapTimeContextProvider = ({
     const setSelectedYear = useCallback(
         (selectedYear: string) => {
             dispatch({
-                type: 'setSelectedYear',
+                type: 'SET_SELECTED_YEAR',
                 payload: selectedYear,
             });
 
@@ -138,7 +138,7 @@ export const NapTimeContextProvider = ({
 
     useEffect(() => {
         dispatch({
-            type: 'setFilteredNapTimeYear',
+            type: 'SET_FILTERED_NAP_TIME_YEAR',
             payload: babyNapTime.filter((napTime) => {
                 return napTime.start.split('-')[0] === state?.selectedYear;
             }),
@@ -148,7 +148,7 @@ export const NapTimeContextProvider = ({
     const setSelectedMonth = useCallback(
         (selectedMonth: string) => {
             dispatch({
-                type: 'setSelectedMonth',
+                type: 'SET_SELECTED_MONTH',
                 payload: selectedMonth,
             });
 
@@ -186,7 +186,7 @@ export const NapTimeContextProvider = ({
 
     useEffect(() => {
         dispatch({
-            type: 'setFilteredNapTimeMonth',
+            type: 'SET_FILTERED_NAP_TIME_MONTH',
             payload: state?.filteredNapTimeYear?.length
                 ? state.filteredNapTimeYear?.filter((napTime) => {
                       return (
@@ -204,7 +204,7 @@ export const NapTimeContextProvider = ({
     );
 
     const uniqueDays = useMemo(() => {
-        return [...new Set(existingDays)];
+        return [...new Set(existingDays)].sort((a, b) => Number(a) - Number(b));
     }, [existingDays]);
 
     const getDayRecords = useCallback(
@@ -212,9 +212,23 @@ export const NapTimeContextProvider = ({
             const filteredDayRecords = state?.filteredNapTimeMonth?.length
                 ? state.filteredNapTimeMonth.filter(
                       (napTime: NapTimeListData) => {
-                          return (
-                              napTime.start.split('-')[2].split(' ')[0] === day
-                          );
+                          if (napTime.type === '🌞') {
+                              return (
+                                  napTime.start.split('-')[2].split(' ')[0] ===
+                                  day
+                              );
+                          }
+
+                          if (napTime.type === '🌚') {
+                              return (
+                                  napTime.start.split('-')[2].split(' ')[0] ===
+                                      day ||
+                                  napTime.finish.split('-')[2].split(' ')[0] ===
+                                      day
+                              );
+                          }
+
+                          return false;
                       },
                   )
                 : null;
@@ -236,7 +250,7 @@ export const NapTimeContextProvider = ({
                 .toFixed(2) || null;
 
         dispatch({
-            type: 'setTotalNapTimeYear',
+            type: 'SET_TOTAL_NAP_TIME_YEAR',
             payload: totalNapTimeYear,
         });
     }, [state?.filteredNapTimeYear]);
@@ -249,7 +263,7 @@ export const NapTimeContextProvider = ({
     useEffect(() => {
         averageNapTimeMonth &&
             dispatch({
-                type: 'setAverageNapTimeMonth',
+                type: 'SET_AVERAGE_NAP_TIME_MONTH',
                 payload: averageNapTimeMonth,
             });
     }, [averageNapTimeMonth]);
@@ -266,7 +280,7 @@ export const NapTimeContextProvider = ({
                 .toFixed(2) || null;
 
         dispatch({
-            type: 'setTotalNapTimeMonth',
+            type: 'SET_TOTAL_NAP_TIME_MONTH',
             payload: totalNapTimeMonth,
         });
     }, [state?.filteredNapTimeMonth]);

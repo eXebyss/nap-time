@@ -25,52 +25,52 @@ const useInitialScreen = () => {
         action: InitialScreenAction,
     ): InitialScreenState => {
         switch (action.type) {
-            case 'setEmail':
+            case 'SET_EMAIL':
                 return {
                     ...state,
                     email: action.payload,
                 };
-            case 'setPassword':
+            case 'SET_PASSWORD':
                 return {
                     ...state,
                     password: action.payload,
                 };
-            case 'setConfirmPassword':
+            case 'SET_CONFIRM_PASSWORD':
                 return {
                     ...state,
                     confirmPassword: action.payload,
                 };
-            case 'setShowPassword':
+            case 'SET_SHOW_PASSWORD':
                 return {
                     ...state,
                     showPassword: action.payload,
                 };
-            case 'setShowConfirmPassword':
+            case 'SET_SHOW_CONFIRM_PASSWORD':
                 return {
                     ...state,
                     showConfirmPassword: action.payload,
                 };
-            case 'setPasswordSecurityLevel':
+            case 'SET_PASSWORD_SECURITY_LEVEL':
                 return {
                     ...state,
                     passwordSecurityLevel: action.payload,
                 };
-            case 'setIsSignInForm':
+            case 'SET_IS_SIGN_IN_FORM':
                 return {
                     ...state,
                     isSignInForm: action.payload,
                 };
-            case 'setIsSignUpForm':
+            case 'SET_IS_SIGN_UP_FORM':
                 return {
                     ...state,
                     isSignUpForm: action.payload,
                 };
-            case 'setPasswordError':
+            case 'SET_PASSWORD_ERROR':
                 return {
                     ...state,
                     passwordError: action.payload,
                 };
-            case 'setAuthMessage':
+            case 'SET_AUTH_MESSAGE':
                 return {
                     ...state,
                     authMessage: action.payload,
@@ -88,70 +88,70 @@ const useInitialScreen = () => {
 
     const setEmail = (email: string) => {
         dispatch({
-            type: 'setEmail',
+            type: 'SET_EMAIL',
             payload: email,
         });
     };
 
     const setPassword = (password: string) => {
         dispatch({
-            type: 'setPassword',
+            type: 'SET_PASSWORD',
             payload: password,
         });
 
         const passwordSecurityLevel = getPasswordSecurityLevel(password);
 
         dispatch({
-            type: 'setPasswordSecurityLevel',
+            type: 'SET_PASSWORD_SECURITY_LEVEL',
             payload: passwordSecurityLevel,
         });
     };
 
     const setConfirmPassword = (password: string) => {
         dispatch({
-            type: 'setConfirmPassword',
+            type: 'SET_CONFIRM_PASSWORD',
             payload: password,
         });
     };
 
     const setShowPassword = () => {
         dispatch({
-            type: 'setShowPassword',
+            type: 'SET_SHOW_PASSWORD',
             payload: !state.showPassword,
         });
     };
 
     const setShowConfirmPassword = () => {
         dispatch({
-            type: 'setShowConfirmPassword',
+            type: 'SET_SHOW_CONFIRM_PASSWORD',
             payload: !state.showConfirmPassword,
         });
     };
 
     const setIsSignInForm = (prop: boolean) => {
         dispatch({
-            type: 'setIsSignInForm',
+            type: 'SET_IS_SIGN_IN_FORM',
             payload: prop,
         });
     };
 
     const setIsSignUpForm = (prop: boolean) => {
         dispatch({
-            type: 'setIsSignUpForm',
+            type: 'SET_IS_SIGN_UP_FORM',
             payload: prop,
         });
     };
 
     const setPasswordError = (message: string | undefined) => {
         dispatch({
-            type: 'setPasswordError',
+            type: 'SET_PASSWORD_ERROR',
             payload: message,
         });
     };
 
     const setAuthMessage = (message: string | undefined) => {
         dispatch({
-            type: 'setAuthMessage',
+            type: 'SET_AUTH_MESSAGE',
             payload: message,
         });
     };

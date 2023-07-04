@@ -1,15 +1,22 @@
 import Button from '@/components/UI/Button/Button';
-import { MdDateRange, MdEdit, MdDelete, MdSave } from 'react-icons/md';
-import Input from '../../UI/Input/Input';
-import Toast from '../../UI/Toast/Toast';
+import { MdDateRange, MdEdit, MdDelete } from 'react-icons/md';
+import Input from '../Input/Input';
+import Toast from '../Toast/Toast';
 import useNapTimeRecord from './useNapTimeRecord';
 import { NapTimeRecordProps } from './types';
 
 const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
     const {
-        isOpen,
-        isTimeFormOpen,
-        isDateFormOpen,
+        state: {
+            isOpen,
+            isTimeFormOpen,
+            isDateFormOpen,
+            napTimeStart,
+            napTimeFinish,
+            napDateStart,
+            napDateFinish,
+            successMessage,
+        },
         timeEdit,
         dateEdit,
         dispatch,
@@ -17,15 +24,10 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
         setNapTimeFinish,
         setNapDateStart,
         setNapDateFinish,
-        napTimeStart,
-        napTimeFinish,
-        napDateStart,
-        napDateFinish,
         updateNapTime,
         updateNapDate,
-        successMessage,
         deleteData,
-    } = useNapTimeRecord();
+    } = useNapTimeRecord(napTime);
 
     const timeForm = (
         <>
@@ -98,6 +100,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                   napTimeFinish && (
                       <Button
                           type="button"
+                          ariaLabel="Save"
                           onClick={() =>
                               updateNapTime(
                                   napTime,
@@ -105,9 +108,9 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                                   napTimeFinish,
                               )
                           }
-                          classes="btn-ghost"
+                          classes="btn-ghost text-2xl fhd:text-3xl"
                       >
-                          <MdSave className="w-12 h-12" />
+                          Save
                       </Button>
                   )
                 : napTimeStart &&
@@ -116,6 +119,7 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                   napDateFinish && (
                       <Button
                           type="button"
+                          ariaLabel="Save"
                           onClick={() =>
                               updateNapDate(
                                   napTime,
@@ -125,9 +129,9 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                                   napTimeFinish,
                               )
                           }
-                          classes="btn-ghost"
+                          classes="btn-ghost text-2xl fhd:text-3xl"
                       >
-                          <MdSave className="w-12 h-12" />
+                          Save
                       </Button>
                   )}
         </div>
@@ -139,13 +143,14 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
 
     return (
         <>
-            <div className="card fhd:w-96 bg-base-100 shadow-xl">
-                <div className="card-body p-4 ">
+            <div className="card fhd:w-96 my-2 fhd:my-4">
+                <div className="card-body p-4">
                     <div className="card-actions justify-end">
                         {(isOpen || isTimeFormOpen) && (
                             <Button
                                 type="button"
-                                classes="btn-ghost my-0 min-h-0 h-fit"
+                                ariaLabel="Open dates"
+                                classes="btn-ghost my-0"
                                 onClick={dateEdit}
                             >
                                 <MdDateRange className="w-4 h-4" />
@@ -153,14 +158,16 @@ const NapTimeRecord = ({ napTime, index }: NapTimeRecordProps) => {
                         )}
                         <Button
                             type="button"
-                            classes="btn-ghost my-0 min-h-0 h-fit"
+                            ariaLabel="Edit"
+                            classes="btn-ghost my-0"
                             onClick={timeEdit}
                         >
                             <MdEdit className="w-4 h-4" />
                         </Button>
                         <Button
                             type="button"
-                            classes="btn-ghost my-0 min-h-0 h-fit"
+                            ariaLabel="Delete"
+                            classes="btn-ghost my-0"
                             onClick={() => deleteData(index)}
                         >
                             <MdDelete className="w-4 h-4" />

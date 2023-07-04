@@ -13,18 +13,19 @@ const InputForm = ({ placeholder, buttonHandler }: InputFormProps) => {
     const [value, setValue] = useState<string>('');
 
     return (
-        <div className="flex">
+        <div className="flex justify-center">
             <Input
                 type="text"
                 placeholder={placeholder}
                 onChange={(e) => setValue(e.target.value)}
-                classes="input input-ghost w-full max-w-xs my-2 fhd:my-4 text-center focus:text-start fhd:text-start fhd:pl-0 fhd:focus:pl-4"
+                classes="input input-ghost w-full max-w-xs my-2 fhd:my-4 text-center focus:text-start fhd:text-start placeholder:text-center focus:placeholder:text-start"
             />
             {value && (
                 <Button
                     type="button"
+                    ariaLabel="Submit"
                     onClick={() => buttonHandler(value)}
-                    classes="btn-ghost ml-2"
+                    classes="btn-ghost ml-2 my-2 fhd:my-4"
                 >
                     Submit
                 </Button>

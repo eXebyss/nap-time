@@ -1,25 +1,28 @@
+import { useState } from 'react';
 import { useAuthContext } from '@/context/AuthContext';
-import addSubData from '@/firebase/firestore/addSubDocument';
 import { useFirestoreContext } from '@/context/FirestoreContext';
+import updateUserName from '@/firebase/auth/updateUserName';
+import { useBabyContext } from '@/context';
 
 const useWelcomeText = () => {
     const authContext = useAuthContext();
     const { babyData } = useFirestoreContext();
+    const { babyName, addBabyName } = useBabyContext();
+    const [displayName, setDisplayName] = useState(
+        authContext?.user?.displayName,
+    );
 
     const user = authContext?.user;
     const loading = authContext?.loading;
 
-    const addBabyName = (value: string) => {
-        user?.uid && addSubData('user', user.uid, 'baby', { name: value });
-    };
-
-    const babyName = babyData?.result
-        ? babyData.result?.docs[0]?.data()?.name
-        : null;
-
     const babyNapTime = babyData?.result
         ? babyData.result?.docs[0]?.data()?.napTime
         : null;
+
+    const handleUpdateUserName = async (name: string) => {
+        await updateUserName(name);
+        setDisplayName(name);
+    };
 
     return {
         user,
@@ -27,6 +30,8 @@ const useWelcomeText = () => {
         addBabyName,
         babyName,
         babyNapTime,
+        displayName,
+        handleUpdateUserName,
     };
 };
 

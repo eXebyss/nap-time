@@ -11,8 +11,12 @@ const MegaMenu = () => {
 
     return (
         <>
-            {' '}
-            <Button type="button" classes="btn-ghost" onClick={openMenuModal}>
+            <Button
+                type="button"
+                ariaLabel="Open menu"
+                classes="btn-ghost"
+                onClick={openMenuModal}
+            >
                 <RiMenuFill />
             </Button>
             <Transition appear show={isMenuOpen} as={Fragment}>
@@ -30,9 +34,8 @@ const MegaMenu = () => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <div className="fixed inset-0 bg-black bg-opacity-25" />
+                        <div className="fixed inset-0 bg-base-neutral bg-opacity-25" />
                     </Transition.Child>
-
                     <div className="fixed inset-0 overflow-y-auto">
                         <div className="flex min-h-full items-center justify-start text-center">
                             <Transition.Child
@@ -44,40 +47,64 @@ const MegaMenu = () => {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="w-full h-screen max-w-md transform overflow-hidden fhd:rounded-r-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Panel className="w-full h-screen max-w-md transform overflow-hidden fhd:rounded-r-2xl bg-base-100 p-6 text-left align-middle shadow-xl transition-all">
                                     <Dialog.Title
                                         as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900 flex justify-end"
+                                        className="text-lg font-medium leading-6 text-neutral flex justify-end"
                                     >
                                         <Button
                                             type="button"
+                                            ariaLabel="Close menu"
                                             classes="btn-ghost"
                                             onClick={closeMenuModal}
                                         >
                                             <RiCloseFill />
                                         </Button>
                                     </Dialog.Title>
-
                                     <Link
                                         href="/"
-                                        className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
+                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
                                     >
                                         Home 🏠
                                     </Link>
                                     <Link
+                                        href="/my-account"
+                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
+                                    >
+                                        Account
+                                    </Link>
+                                    <Link
                                         href="/naptime"
-                                        className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
+                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
                                     >
                                         Nap History
                                     </Link>
                                     <Link
                                         href="/installation-guide"
-                                        className="my-2 fhd:my-4 text-sm text-gray-500 flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
+                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
                                     >
                                         Installation Guide
                                     </Link>
+                                    <Link
+                                        href="/privacy-policy"
+                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
+                                    >
+                                        Privacy Policy
+                                    </Link>
+                                    <Link
+                                        href="/terms-of-service"
+                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
+                                    >
+                                        Terms of Service
+                                    </Link>
+                                    <Link
+                                        href="https://www.mihailsfjodorovs.com/#contact"
+                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
+                                    >
+                                        Contact
+                                    </Link>
                                     <div className="flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4">
-                                        <p className="my-2 fhd:my-4 text-sm text-gray-500">
+                                        <p className="my-2 fhd:my-4 text-sm text-base-content">
                                             Logout
                                         </p>
                                         <LogoutButton />

@@ -175,6 +175,7 @@ const InitialForm = () => {
                                 <div className="grid h-20 rounded-box place-items-center">
                                     <Button
                                         type="submit"
+                                        ariaLabel="Login"
                                         classes="btn-primary w-full"
                                     >
                                         Login
@@ -184,6 +185,7 @@ const InitialForm = () => {
                                 <div className="grid h-20 rounded-box place-items-center">
                                     <Button
                                         type="submit"
+                                        ariaLabel="Register"
                                         classes="btn-outline w-full"
                                         onClick={handleSwitchToSignUp}
                                     >
@@ -197,6 +199,7 @@ const InitialForm = () => {
                                 <div className="grid h-20 rounded-box place-items-center">
                                     <Button
                                         type="submit"
+                                        ariaLabel="Register"
                                         classes="btn-primary w-full"
                                     >
                                         Register
@@ -206,6 +209,7 @@ const InitialForm = () => {
                                 <div className="grid h-20 rounded-box place-items-center">
                                     <Button
                                         type="submit"
+                                        ariaLabel="Login"
                                         classes="btn-outline w-full"
                                         onClick={handleSwitchToSignIn}
                                     >
@@ -218,6 +222,7 @@ const InitialForm = () => {
                         <div className="grid flex-grow rounded-box place-items-center">
                             <Button
                                 type="button"
+                                ariaLabel="Google"
                                 onClick={signInWithGoogle}
                                 classes="btn-outline w-full"
                             >
@@ -226,6 +231,7 @@ const InitialForm = () => {
                             </Button>
                             <Button
                                 type="button"
+                                ariaLabel="Facebook"
                                 onClick={signInWithFacebook}
                                 classes="btn-outline w-full"
                             >
