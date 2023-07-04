@@ -1,5 +1,14 @@
 import { PortableText } from '@portabletext/react';
 import { getSanityData } from '@/utils';
+import { siteTitle } from '@/constants';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: `${siteTitle}: Privacy Policy`,
+    openGraph: {
+        title: `${siteTitle}: Privacy Policy`,
+    },
+};
 
 const PrivacyPolicyPage = async () => {
     const privacyPolicyData = await getSanityData(
