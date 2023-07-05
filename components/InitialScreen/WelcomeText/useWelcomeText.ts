@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthContext } from '@/context/AuthContext';
 import { useFirestoreContext } from '@/context/FirestoreContext';
 import updateUserName from '@/firebase/auth/updateUserName';
@@ -11,6 +11,11 @@ const useWelcomeText = () => {
     const [displayName, setDisplayName] = useState(
         authContext?.user?.displayName,
     );
+
+    useEffect(() => {
+        authContext?.user?.displayName &&
+            setDisplayName(authContext?.user?.displayName);
+    }, [authContext]);
 
     const user = authContext?.user;
     const loading = authContext?.loading;
