@@ -95,7 +95,7 @@ export const BabyContextProvider = ({
                 .filter((doc) => doc.id === state.babyName?.id)
                 .map((doc) => ({ id: doc.id }));
 
-            const { id } = docId[0];
+            const { id } = docId[0] || '';
 
             const doc = babyData.result.docs.find((doc) => doc.id === id);
 
