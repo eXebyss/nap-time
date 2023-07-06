@@ -1,13 +1,14 @@
 import { Fragment } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { RiMenuFill, RiCloseFill } from 'react-icons/ri';
 import { Transition, Dialog } from '@headlessui/react';
-import Link from 'next/link';
 import Button from '../../Button/Button';
 import LogoutButton from '../../LogoutButton/LogoutButton';
 import useMegaMenu from './useMegaMenu';
+import MegaMenuLink from './MegaMenuLink/MegaMenuLink';
 
 const MegaMenu = () => {
-    const { isMenuOpen, openMenuModal, closeMenuModal } = useMegaMenu();
+    const { isMenuOpen, openMenuModal, closeMenuModal, links } = useMegaMenu();
 
     return (
         <>
@@ -61,48 +62,16 @@ const MegaMenu = () => {
                                             <RiCloseFill />
                                         </Button>
                                     </Dialog.Title>
-                                    <Link
-                                        href="/"
-                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
-                                    >
-                                        Home 🏠
-                                    </Link>
-                                    <Link
-                                        href="/my-account"
-                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
-                                    >
-                                        Account
-                                    </Link>
-                                    <Link
-                                        href="/naptime"
-                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
-                                    >
-                                        Nap History
-                                    </Link>
-                                    <Link
-                                        href="/installation-guide"
-                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
-                                    >
-                                        Installation Guide
-                                    </Link>
-                                    <Link
-                                        href="/privacy-policy"
-                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
-                                    >
-                                        Privacy Policy
-                                    </Link>
-                                    <Link
-                                        href="/terms-of-service"
-                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
-                                    >
-                                        Terms of Service
-                                    </Link>
-                                    <Link
-                                        href="https://www.mihailsfjodorovs.com/#contact"
-                                        className="my-2 fhd:my-4 text-sm text-base-content flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4"
-                                    >
-                                        Contact
-                                    </Link>
+                                    <div className="grid">
+                                        {links.map((link) => (
+                                            <MegaMenuLink
+                                                key={uuidv4()}
+                                                href={link.href}
+                                                text={link.text}
+                                                onClick={closeMenuModal}
+                                            />
+                                        ))}
+                                    </div>
                                     <div className="flex flex-wrap justify-start items-center gap-x-2 fhd:gap-x-4">
                                         <p className="my-2 fhd:my-4 text-sm text-base-content">
                                             Logout
