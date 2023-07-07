@@ -90,7 +90,7 @@ const BabySelector = () => {
                                                                         `flex justify-between cursor-default select-none py-2 px-4 ${
                                                                             active
                                                                                 ? 'bg-accent text-accent-content'
-                                                                                : 'text-neutral-content'
+                                                                                : 'text-base-content'
                                                                         }`
                                                                     }
                                                                     value={name}
